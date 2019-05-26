@@ -1,0 +1,49 @@
+{
+  "name": "mana",
+  "version": "0.0.0",
+  "description": "A JavaScript UI framework for server rendered websites",
+  "keywords": [
+    "JavaScript",
+    "TypeScript",
+    "Framework"
+  ],
+  "license": "MIT",
+  "author": "Andreas Linnert <andreas@linnertmedia.de>",
+  "main": "index.js",
+  "scripts": {
+    "build": "pack build",
+    "publish": "pack publish"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-web"
+      ],
+      [
+        "@pika/plugin-bundle-web"
+      ],
+      [
+        "@pika/plugin-build-umd",
+        {
+          "name": "mana"
+        }
+      ],
+      [
+        "pika-plugin-minify",
+        {}
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@pika/pack": "^0.3.7",
+    "@pika/plugin-build-umd": "^0.4.0",
+    "@pika/plugin-build-web": "^0.4.0",
+    "@pika/plugin-bundle-web": "^0.4.0",
+    "@pika/plugin-ts-standard-pkg": "^0.4.0",
+    "pika-plugin-minify": "^0.1.0",
+    "typescript": "^3.4.5"
+  }
+}

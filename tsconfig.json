@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "es2019",
+    "module": "esnext",
+    "lib": ["dom"]
+  },
+  "include": ["./src/**/*.ts"]
+}
