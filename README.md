@@ -68,3 +68,5 @@ controller.onInit(context => {
 When you click on any `toggleButton` target you change the property `isOpen` (and also the associated HTML attribute) from `true` to `false` and vice versa.
 
 With the `.onChange()` method you can react to any change of the `isOpen` property (and, of course, also of the associated HTML attribute).
+
+*Note:* The API for properties might change since I think about integrating Vue's upcoming reactivity system into Mana. But I'm not sure, yet.
