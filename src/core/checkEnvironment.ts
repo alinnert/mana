@@ -1,4 +1,4 @@
-import { log, LogType } from "./logger";
+import { log, LogType } from "./logger"
 
 export function checkEnvironment(): boolean {
   const documentIsMissing = typeof document === 'undefined'

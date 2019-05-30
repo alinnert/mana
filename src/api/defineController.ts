@@ -1,8 +1,8 @@
-import { ControllerConfig } from './types/ControllerConfig'
-import { registerController } from './data/controllerList'
-import { log, LogType } from './logger'
+import { ControllerConfig } from '../core/ControllerTypes'
+import { registerController } from '../core/controllers'
+import { log, LogType } from '../core/logger'
 
-export function defineController(userConfig: ControllerConfig) {
+export function defineController(userConfig: ControllerConfig): void {
   if (validateUserConfig(userConfig)) {
     registerController(userConfig)
   }
@@ -23,8 +23,6 @@ function validateUserConfig(config: ControllerConfig): boolean {
     message = 'Property "properties" (optional) must be an object.'
   } else if (typeof config.targets !== 'undefined' && typeof config.targets !== 'object') {
     message = 'Property "targets" (optional) must be an object.'
-  } else if (typeof config.dataMaps !== 'undefined' && !Array.isArray(config.dataMaps)) {
-    message = 'Property "dataMaps" (optional) must be an object.'
   }
 
   if (message !== '') {

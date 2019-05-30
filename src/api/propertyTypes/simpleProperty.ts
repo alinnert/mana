@@ -1,4 +1,4 @@
-import { PropertyTypeDescriptor } from "./index";
+import { PropertyTypeDescriptor } from "./propertyTypeTypes"
 
 export function simpleProperty(): PropertyTypeDescriptor<string> {
   return {

@@ -1,9 +1,9 @@
-import { startObserver } from './startObserver';
-import { checkEnvironment } from './checkEnvironment';
+import { initObserver } from './core/domObserver'
+import { checkEnvironment } from './core/checkEnvironment'
 
-export * from './defineController'
-export * from './propertyTypes/index'
+export * from './api/defineController'
+export * from './api/propertyTypes/index'
 
 if (checkEnvironment()) {
-  startObserver()
+  initObserver()
 }

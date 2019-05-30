@@ -1,4 +1,4 @@
-import { PropertyTypeDescriptor, InvalidHTMLPropertyError } from "./index";
+import { PropertyTypeDescriptor, InvalidHTMLPropertyError } from "./propertyTypeTypes"
 
 type EnumPropertyOptions = {
   items: string[]

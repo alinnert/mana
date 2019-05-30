@@ -7,16 +7,51 @@
   <title>Document</title>
 </head>
 <body>
-  <div class="@slide-in" data-slide-in[isOpen]="ON"></div>
+  <button id="add-greeter-with-prop">Add @greeter with [name=Property]</button>
   
+  <div id="components">
+    <div class="@greeter">
+      <span class="@greeter.output"></span>
+    </div>
+  </div>
+
   <script src="pkg/dist-umd/index.js"></script>
+
   <script>
-    mana.defineController({
-      name: 'slide-in',
-      properties: {
-        isOpen: { default: 'false', type: mana.booleanProperty({ true: 'ON', false: 'false', caseSensitive: false }) }
+    {
+      const greeter = mana.defineController({
+        name: 'greeter',
+        properties: {
+          name: { default: 'World', type: mana.simpleProperty() }
+        },
+        targets: {
+          output: {}
+        }
+      })
+
+      if (greeter) {
+        greeter.onInit(context => {
+          context.properties.name.onChange(name => {
+            const message = `Hello, ${name}`
+            context.targets.output.textValue = message
+          })
+        })
       }
-    })
+    }
+
+    {
+      const componentsContainer = document.getElementById('components')
+      const addButtonEvent = (id, event) => document.getElementById(id).addEventListener('click', event)
+
+      addButtonEvent('add-greeter-with-prop', () => {
+        const html = `
+          <div class="@greeter" data-greeter.name="Property">
+            <span class="@greeter.output"></span>
+          </div>`
+
+        componentsContainer.insertAdjacentHTML('beforeend', html)
+      })
+    }
   </script>
 </body>
 </html>

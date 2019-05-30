@@ -20,13 +20,16 @@ First you define a controller like this:
 const controller = mana.defineController({
   name: 'slide-in-menu',
   properties: {
-    isOpen: { default: 'false', type: mana.booleanProperty() }
+    isOpen: { default: 'false', type: mana.booleanProperty() },
+    classes: {
+      type: mana.simpleProperty(),
+      dataMap: {
+        isOpen: { required: true }
+      }
+    }
   },
   targets: {
-    toggleButton: {}
-  },
-  dataMaps: {
-    classes: ['is-open']
+    toggleButton: { }
   }
 })
 ~~~
@@ -36,37 +39,63 @@ Then you apply all the information to your HTML:
 ~~~ html
 <div
   class="slide-in-menu @slide-in-menu"
-  data-slide-in-menu[is-open]="true"
-  data-slide-in-menu:classes[is-open]="slide-in-menu--is-open"
+  data-slide-in-menu.is-open="true"
+  data-slide-in-menu.classes:is-open="slide-in-menu--is-open"
 >
-  <button class="@slide-in-menu:toggle-button">Toggle Button</button>
+  <button class="@slide-in-menu.toggle-button">Toggle Button</button>
 </div>
 ~~~
 
-Controllers are applied via class names with the format `@<controller name>`.
+Controllers are applied via class names with the format `@{controller}`.
 
-Attributes with the format `data-<controller name>[<property name>]` can pass additional information to your controller code. It's like a function argument, where the controller is your function.
+Attributes with the format `data-{controller}.{property}` are called "properties". They can pass additional information to your controller. It's like a function argument, where the controller is your function.
 
-Attributes with the format `data-<controller name>:<data map name>[<data map property>]` are technically the same, but can be grouped into data maps. They are like passing an array to a function.
+Attributes with the format `data-{controller}.{property}:{data map item}` ‒ called "data map properties" ‒ are technically the same, but multiple key value pairs can be grouped together. They are like passing an array to a function.
 
-Class names like `@<controller name>:<target name>` signalize a target. A target makes it easy to select different HTML elements in association with a controller.
+Class names with the format `@{controller}.{target}` signalize a target. A target makes it easy to select an element in association with a controller. A target needs to be inside the root element of that controller it belongs to. Otherwise Mana doesn't know which target belongs to which controller element.
 
 Now you can add logic to your controller:
 
 ~~~ js
-controller.onInit(context => {
-  context.target.toggleButton.on('click', () => {
-    context.property.isOpen.value = !context.property.isOpen.value
-  })
+mana.defineController({
+  /* other config options... */
 
-  context.property.isOpen.onChange(isOpen => {
-    // do something with `isOpen`
-  })
+  onInit (context) {
+    context.target.toggleButton.on('click', () => {
+      context.property.isOpen.value = !context.property.isOpen.value
+    })
+
+    context.property.isOpen.onChange(isOpen => {
+      // do something with `isOpen`
+    })
+  }
 })
 ~~~
 
 When you click on any `toggleButton` target you change the property `isOpen` (and also the associated HTML attribute) from `true` to `false` and vice versa.
 
-With the `.onChange()` method you can react to any change of the `isOpen` property (and, of course, also of the associated HTML attribute).
+With the `.onChange()` method you can listen to any change of the `isOpen` property (and, of course, also of the associated HTML attribute).
 
 *Note:* The API for properties might change since I think about integrating Vue's upcoming reactivity system into Mana. But I'm not sure, yet.
+
+## Planned features
+
+### Named controllers
+
+I plan to add the possibility to create targets outside of their root element. For that to work the target and the controller element need to be connected ‒ via a name.
+
+Example:
+
+~~~ html
+<div class="@counter#main-counter">
+  <div class="@counter.output"></div>
+</div>
+
+<div class="@counter#another-counter">
+  <div class="@counter.output"></div>
+</div>
+
+<button class="@counter#main-counter.increment-button">Add 1</button>
+~~~
+
+That way the button knows it belongs to the first counter, not to the second, although it's not a descendant element of the first counter.
