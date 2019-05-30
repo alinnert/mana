@@ -103,3 +103,7 @@ Example:
 ~~~
 
 That way the button knows it belongs to the first counter, not to the second, although it's not a descendant element of the first counter.
+
+## License
+
+[MIT](https://github.com/alinnert/mana/blob/master/LICENSE)
