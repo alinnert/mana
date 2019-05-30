@@ -1,20 +1,22 @@
 # Mana
 
-> Mana is a JavaScript UI framework for server rendered websites.
+> Mana is a JavaScript UI framework for existing HTML.
 
 **Status:** WIP
 
 ## What Mana is
 
-Mana is a UI framework that attaches itself to already existing HTML. This can be manually written HTML or HTML generated statically, or by a CMS like Drupal etc.
+Mana is a UI framework that attaches itself to already existing HTML. This HTML can be manually HTML, generated statically, or by a CMS like Drupal etc.
 
-## What Mana is **not**
+So, you can use Mana to bind JS logic to ordinary websites in a componentized way. That way you could create "components" that can be attached to any HTML by using classes and attributes. It also helps you write code that's independent of project specific style classes. I.e. your "components" will work on Bootstrap websites just as fine as on ones that are built on top of a custom Sass framework.
 
-Mana is **not** a UI framework for web apps, like React and Vue, that generates and manages HTML itself.
+## What Mana is not
+
+Mana is **not** a UI framework for web apps, like React and Vue, that generates and manages HTML itself. There is no virtual DOM, no render method, and nothing alike.
 
 ## What does it look like?
 
-First you define a controller like this:
+First you define and configure a controller:
 
 ~~~ js
 const controller = mana.defineController({
@@ -34,7 +36,7 @@ const controller = mana.defineController({
 })
 ~~~
 
-Then you apply all the information to your HTML:
+Then you apply the controller specific classes and attributes to your HTML:
 
 ~~~ html
 <div
@@ -46,13 +48,15 @@ Then you apply all the information to your HTML:
 </div>
 ~~~
 
-Controllers are applied via class names with the format `@{controller}`.
+Controllers are applied via class names with the format `@{controller}`. The `slide-in-menu` class could be a style class used by your CSS.
 
 Attributes with the format `data-{controller}.{property}` are called "properties". They can pass additional information to your controller. It's like a function argument, where the controller is your function.
 
 Attributes with the format `data-{controller}.{property}:{data map item}` ‒ called "data map properties" ‒ are technically the same, but multiple key value pairs can be grouped together. They are like passing an array to a function.
 
-Class names with the format `@{controller}.{target}` signalize a target. A target makes it easy to select an element in association with a controller. A target needs to be inside the root element of that controller it belongs to. Otherwise Mana doesn't know which target belongs to which controller element.
+In this example you tell the controller which CSS class to set while the menu is open.
+
+Class names with the format `@{controller}.{target}` signalize a target. A target makes it easy to select an element in association with a controller. A target needs to be inside the root element of that controller it belongs to. Otherwise Mana doesn't know which target belongs to which controller element. (Use "named controllers" to break this rule. See "Planned features" below.)
 
 Now you can add logic to your controller:
 
