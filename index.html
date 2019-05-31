@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    .greeter {
+      border: 2px solid darkgreen;
+      padding: 10px;
+      margin: 10px;
+    }
+
+    .some-container {
+      border: 2px solid silver;
+      margin: 10px;
+    }
+  </style>
 </head>
+
 <body>
   <button id="add-greeter-with-prop">Add @greeter with [name=Property]</button>
-  
+  <button id="add-greeter-in-div">Add @greeter in &lt;div&gt;</button>
+  <button id="add-greeter-highlighter">Add @greeter#highlight + @highlighter combination</button>
+
   <div id="components">
-    <div class="@greeter">
+    <div class="greeter @greeter">
       <span class="@greeter.output"></span>
     </div>
   </div>
@@ -19,24 +35,29 @@
 
   <script>
     {
+      let counter = 0
       const greeter = mana.defineController({
         name: 'greeter',
+
         properties: {
           name: { default: 'World', type: mana.simpleProperty() }
         },
+
         targets: {
           output: {}
-        }
-      })
+        },
 
-      if (greeter) {
-        greeter.onInit(context => {
+        onInit(context) {
+          console.log('init a greeter controller :O')
+          counter += 1
+          context.element.insertAdjacentHTML('beforeend', `<div>Counter #${counter}</div>`)
+          return
           context.properties.name.onChange(name => {
             const message = `Hello, ${name}`
             context.targets.output.textValue = message
           })
-        })
-      }
+        }
+      })
     }
 
     {
@@ -44,14 +65,29 @@
       const addButtonEvent = (id, event) => document.getElementById(id).addEventListener('click', event)
 
       addButtonEvent('add-greeter-with-prop', () => {
-        const html = `
-          <div class="@greeter" data-greeter.name="Property">
+        componentsContainer.insertAdjacentHTML('beforeend', `
+          <div class="greeter @greeter" data-greeter.name="Property">
             <span class="@greeter.output"></span>
-          </div>`
+          </div>`)
+      })
 
-        componentsContainer.insertAdjacentHTML('beforeend', html)
+      addButtonEvent('add-greeter-in-div', () => {
+        componentsContainer.insertAdjacentHTML('beforeend', `
+          <div class="some-container">
+            <div class="greeter @greeter" data-greeter.name="Property">
+              <span class="@greeter.output"></span>
+            </div>
+          </div>`)
+      })
+
+      addButtonEvent('add-greeter-highlighter', () => {
+        componentsContainer.insertAdjacentHTML('beforeend', `
+          <div class="greeter @greeter#highlight @highlighter" data-greeter.name="Property">
+            <span class="@greeter.output"></span>
+          </div>`)
       })
     }
   </script>
 </body>
+
 </html>

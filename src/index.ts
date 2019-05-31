@@ -1,3 +1,5 @@
+// import 'core-js/features/array/from'
+
 import { initObserver } from './core/domObserver'
 import { checkEnvironment } from './core/checkEnvironment'
 

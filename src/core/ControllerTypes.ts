@@ -38,21 +38,21 @@ export type ControllerConfig = {
   onDestroy: ControllerLifecycleMethod
 }
 
-type ControllerProperty<T> = {
+export type ControllerProperty<T> = {
   value: T
   onChange: (callback: (value: T, oldValue: T | undefined) => void) => void
 }
 
-type ControllerTarget = {
+export type ControllerTarget = {
   element: HTMLElement
   value: string
   html: string
 }
 
-type ControllerTargetSet = {
-  firstTarget: ControllerTarget
+export type ControllerTargetSet = {
+  firstTarget: ControllerTarget | null
   targets: ControllerTarget[]
-  firstElement: HTMLElement
+  firstElement: HTMLElement | null
   elements: HTMLElement[]
   onAdded: (handler: Function) => void
   onRemoved: (handler: Function) => void
@@ -61,13 +61,19 @@ type ControllerTargetSet = {
   off: (event: keyof HTMLElementEventMap, handler: Function, options: boolean | EventListenerOptions | boolean) => void
 }
 
-type ControllerContext = {
+export type ControllerContext = {
   config: ControllerConfig
   data: { [x: string]: any }
   property: { [x: string]: ControllerProperty<any> }
   target: { [x: string]: ControllerTargetSet }
   element: HTMLElement
   headElement: HTMLHeadElement
-  titleElement: HTMLTitleElement
   bodyElement: HTMLBodyElement
+}
+
+export type ManaClassDescriptor = {
+  element: HTMLElement
+  controller: string
+  tag?: string
+  target?: string
 }
