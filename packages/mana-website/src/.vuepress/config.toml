@@ -1,4 +1,5 @@
 title = "Mana Documentation [WIP]"
+base = "/mana-website/"
 
 [themeConfig]
 repo = "alinnert/mana"
