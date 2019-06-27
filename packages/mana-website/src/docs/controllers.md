@@ -1,8 +1,8 @@
 ---
-title: Controllers
+title: Create a controller
 ---
 
-# Controllers
+# Create a controller
 
 ## Name
 
