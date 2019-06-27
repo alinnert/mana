@@ -17,7 +17,7 @@ action "Build" {
 action "Deploy" {
   uses = "maxheld83/ghpages@v0.2.1"
   env = {
-    BUILD_DIR = "docs/"
+    BUILD_DIR = "src/.vuepress/dist/"
   }
   needs = ["Build"]
   secrets = ["GH_PAT"]
