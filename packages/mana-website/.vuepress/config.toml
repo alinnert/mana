@@ -1,0 +1,19 @@
+title = "Mana Documentation"
+
+[themeConfig]
+repo = "alinnert/mana"
+
+[[themeConfig.nav]]
+text = "Home"
+link = "/"
+
+[[themeConfig.nav]]
+text = "About"
+link = "/about/"
+
+[[themeConfig.nav]]
+text = "Documentation"
+link = "/docs/"
+
+[themeConfig.sidebar]
+"/docs/" = ["", "controllers", "templates"]

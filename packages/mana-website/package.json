@@ -1,0 +1,19 @@
+{
+  "name": "mana.github.io",
+  "version": "1.0.0",
+  "description": "Documentation website for JS-Framework Mana",
+  "keywords": [
+    "documentation",
+    "website",
+    "vuepress"
+  ],
+  "author": "Andreas Linnert <andreas@linnertmedia.de>",
+  "license": "MIT",
+  "scripts": {
+    "build": "vuepress build",
+    "dev": "vuepress dev"
+  },
+  "dependencies": {
+    "vuepress": "^1.0.2"
+  }
+}
