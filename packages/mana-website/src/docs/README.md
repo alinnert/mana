@@ -12,7 +12,7 @@ This example uses the upcomming Vue reactivity RFC to track the current value. Y
 
 ~~~ js
 import { defineController, numberProperty } from '@mana/framework'
-import { value, watch } from 'vue'
+import { value, watch } from '@vue/observer'
 
 defineController({
   // This is the name of the controller.
