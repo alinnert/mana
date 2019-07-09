@@ -1,1 +1,0 @@
-export const isElement = (node: Node) => node.nodeType === Node.ELEMENT_NODE
