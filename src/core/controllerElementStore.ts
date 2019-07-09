@@ -1,20 +1,9 @@
-import { ControllerConfig, ControllerList, ManaClassDescriptor, ControllerContext, ControllerProperty, ControllerTarget, ControllerTargetSet } from './ControllerTypes'
-
-type ElementInformation = {
-  controller: string
-  context: ControllerContext
-  targets: ControllerTargetSet[]
-}
+import { ControllerConfig, ControllerContext, ControllerList, ControllerProperty, ControllerTargetSet, ElementInformation, ManaClassDescriptor } from './ControllerTypes'
 
 const headElement = document.head
 const bodyElement = document.body as HTMLBodyElement
 const controllers: ControllerList = {}
 const elements: WeakMap<HTMLElement, ElementInformation> = new WeakMap()
-
-// @ts-ignore
-window.manaControllers = controllers
-// @ts-ignore
-window.manaElements = elements
 
 export function registerController(config: ControllerConfig) {
   controllers[config.name] = config

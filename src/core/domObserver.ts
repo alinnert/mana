@@ -1,38 +1,40 @@
-import { isElement } from './domFunctions'
+import { registerElement, unregisterElement } from './controllerElementStore'
 import { ManaClassDescriptor } from './ControllerTypes'
-import { arrayFrom, arrayFlatMap, arrayFlatten } from './utils'
-import { registerElement, unregisterElement } from './controllers'
+import { isElement } from './domFunctions'
+import { arrayFlatMap, arrayFrom } from './utils'
 
+/** @description An enum to signalize if an element has been added or removed. */
 enum ChangeType { Add, Remove }
 
-export function initObserver() {
-  handleElementChange(document.querySelectorAll('[class*="@"]'), ChangeType.Add)
+const observerCallback: MutationCallback = (mutations: MutationRecord[]) => {
+  mutations.forEach(mutation => {
+    if (mutation.type === 'attributes') {
+      const { target, attributeName } = mutation
+      console.log(target, 'has a new value for attribute', attributeName)
+    } else if (mutation.type === 'childList') {
+      const { addedNodes, removedNodes } = mutation
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const bodyElement = document.body
-    const config: MutationObserverInit = { childList: true, attributes: true, subtree: true }
-    const observer = new MutationObserver(observerCallback)
-    observer.observe(bodyElement, config)
-
-    /** @type { MutationCallback } */
-    function observerCallback(mutations: MutationRecord[]) {
-      mutations.forEach(mutation => {
-        if (mutation.type === 'attributes') {
-          const { target, attributeName } = mutation
-          console.log(target, 'has a new value for attribute', attributeName)
-        } else if (mutation.type === 'childList') {
-          const { addedNodes, removedNodes } = mutation
-
-          if (addedNodes.length) { handleElementChange(addedNodes, ChangeType.Add) }
-          if (removedNodes.length) { handleElementChange(removedNodes, ChangeType.Remove) }
-        }
-      })
+      if (addedNodes.length) { handleElementChange(addedNodes, ChangeType.Add) }
+      if (removedNodes.length) { handleElementChange(removedNodes, ChangeType.Remove) }
     }
   })
 }
 
+/** @description This function starts the observation process to check if elements get added or removed from the DOM. */
+export function initObserver(): void {
+  // Register all elements that were present from the beginning.
+  handleElementChange(document.querySelectorAll('[class*="@"]'), ChangeType.Add)
+
+  const bodyElement = document.body
+  const options: MutationObserverInit = { childList: true, attributes: true, subtree: true }
+  const observer = new MutationObserver(observerCallback)
+  const startObservation = () => { observer.observe(bodyElement, options) }
+
+  document.addEventListener('DOMContentLoaded', startObservation)
+}
+
+/** @description Some element has been added or removed. Take care of that. */
 function handleElementChange(nodes: NodeList, change: ChangeType) {
-  console.log(nodes)
   const elements = fetchManaElements(nodes)
   const classes = arrayFlatMap(elements, parseManaClasses)
 
@@ -42,6 +44,7 @@ function handleElementChange(nodes: NodeList, change: ChangeType) {
   })
 }
 
+/** @description Filter all nodes and only return elements that contain a `@` in their className. */
 function fetchManaElements(nodes: NodeList): HTMLElement[] {
   const elements = (arrayFrom(nodes).filter(isElement) as HTMLElement[])
   const rootElements = elements.filter(it => it.className.includes('@'))
@@ -49,7 +52,8 @@ function fetchManaElements(nodes: NodeList): HTMLElement[] {
   return [...rootElements, ...childElements]
 }
 
-function parseManaClasses(element: HTMLElement) {
+/** @description Parse all classes of an element and retrieve all necessary information for Mana. */
+function parseManaClasses(element: HTMLElement): ManaClassDescriptor[] {
   const classes = element.className.split(' ').filter(it => it.includes('@'))
   return classes.map(className => {
     const classDescriptor: ManaClassDescriptor = { element, controller: '' }

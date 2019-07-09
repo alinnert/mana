@@ -77,3 +77,9 @@ export type ManaClassDescriptor = {
   tag?: string
   target?: string
 }
+
+export type ElementInformation = {
+  controller: string
+  context: ControllerContext
+  targets: ControllerTargetSet[]
+}

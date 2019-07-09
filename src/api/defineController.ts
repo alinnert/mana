@@ -1,5 +1,5 @@
 import { ControllerConfig } from '../core/ControllerTypes'
-import { registerController } from '../core/controllers'
+import { registerController } from '../core/controllerElementStore'
 import { log, LogType } from '../core/logger'
 
 export function defineController(userConfig: ControllerConfig): void {
