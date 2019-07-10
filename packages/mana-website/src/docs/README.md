@@ -1,72 +1,25 @@
 ---
-title: Getting started
+title: Mana - Overview
 ---
 
-# Getting started
+# Mana
 
-Let's create a simple counter component. It displays a number and two buttons to increment or decrement that number by the value of `1`. It also lets you define an initial value.
+Mana is a collection of packages that allow you to add behavior to your HTML.
 
-## Create the controller
+## Core
 
-This example uses the upcomming Vue reactivity RFC to track the current value. You can use whichever method you prefer.
+This is the core functionality of Mana. It watches the DOM for specific elements and executes code on their addition to and removal from the DOM. It also watches for changes to attributes.
 
-~~~ js
-import { defineController, numberProperty } from '@mana/framework'
-import { watch } from '@vue/observer'
+[Read Core documentation](/docs/core/)
 
-defineController({
-  // This is the name of the controller.
-  // The class name you have to add to your HTML is an `@` + this name.
-  // In this case: @counter
-  name: 'counter',
+## Attributes
 
-  // This are the properties.
-  // You can use them to pass initial data and to store your current state.
-  properties: {
-    initialValue: { default: 0, type: numberProperty() }
-  },
+With this package you can parse HTML attributes and convert their value into any data that is useful for your application.
 
-  // Targets give you access to nested elements.
-  // You can use them to access or change their values, or add event listener.
-  targets: {
-    incrementButton: { },
-    decrementButton: { },
-    displayValue: { }
-  },
+[Read Attributes documentation](/docs/attributes/)
 
-  // This callback function gets called when some element receives the `@counter`
-  // or if an element gets created with a `@counter` class.
-  connect (context) {
-    context.target.incrementButton.on('click', () => {
-      context.properties.counterValue.value += 1
-    })
+## Controllers
 
-    context.target.decrementButton.on('click', () => {
-      context.properties.counterValue.value -= 1
-    })
+This package extends the functionality of the Core package and allows you to write full controllers that can add more complex functionality to your HTML.
 
-    watch(context.properties.counterValue, counterValue => {
-      context.target.displayValue.textValue = counterValue
-    })
-  }
-})
-~~~
-
-## Apply classes and attributes to your HTML
-
-~~~ html
-<!-- The `@counter` class tells Mana that this is a counter component. -->
-<!-- The attribute `data-counter.initial-value` sets the initial value of that counter. -->
-<div class="@counter" data-counter.initial-value="5">
-
-  <!-- This is the `display-value` target. It displays the current Value -->
-  <div class="@counter.display-value"></div>
-
-  <!-- This is the `decrement-button` target. It decrements the value above by 1. -->
-  <div class="@counter.decrement-button">- 1</div>
-
-  <!-- This is the `increment-button` target. It increments the value above by 1. -->
-  <div class="@counter.increment-button">+ 1</div>
-  
-</div>
-~~~
+[Read Controllers documentation](/docs/controllers/)

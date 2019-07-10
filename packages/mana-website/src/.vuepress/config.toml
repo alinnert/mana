@@ -16,5 +16,33 @@ link = "/about/"
 text = "Documentation"
 link = "/docs/"
 
-[themeConfig.sidebar]
-"/docs/" = ["", "controllers", "templates"]
+# [themeConfig.sidebar]
+# "/docs/" = ["", "controllers", "templates"]
+
+[[themeConfig.sidebar."/docs/"]]
+title = "Overview"
+path = "/docs/"
+
+[[themeConfig.sidebar."/docs/"]]
+title = "@mana/core"
+collapsable = false
+children = [
+  "/docs/core/",
+]
+
+[[themeConfig.sidebar."/docs/"]]
+title = "@mana/attributes"
+collapsable = false
+children = [
+  "/docs/attributes/",
+  "/docs/attributes/create-own",
+]
+
+[[themeConfig.sidebar."/docs/"]]
+title = "@mana/controllers"
+collapsable = false
+children = [
+  "/docs/controllers/",
+  "/docs/controllers/controllers",
+  "/docs/controllers/templates",
+]
