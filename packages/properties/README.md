@@ -1,28 +1,30 @@
-# @mana/properties
+# @mana/attributes
 
-A collection of property descriptors (converters) to convert back and forth between HTML attributes and meaningful values.
+A collection of commonly used attribute descriptors (= converters and validators) to convert back and forth between HTML attributes and JS native data types.
+
+This is necessary because attributes are always of type *string*. Attribute descriptors can also be used to validate attributes.
 
 ## Usage
 
 Based on this HTML:
 
 ~~~ html
-<div data-some-bool-prop="YES"></div>
+<div data-some-bool-attrib="YES"></div>
 ~~~
 
 You can parse the attribute like this:
 
 ~~~ js
-import { booleanProperty } from '@mana/properties'
+import { booleanAttribute } from '@mana/attributes'
 
-const yesNoProp = booleanProperty({ trueValues: ['yes'], falseValues: ['no'], caseSensitive: false })
+const yesNoAttribute = booleanAttribute({ trueValues: ['yes'], falseValues: ['no'], caseSensitive: false })
 const element = document.getElementById('some-element')
 
-const propValue = yesNoProp.parse(element, 'data-some-bool-attrib')
+const attribValue = yesNoAttribute.parse(element, 'data-some-bool-attrib')
 
-propValue // -> true
+attribValue // -> true
 ~~~
 
-## Create your own property descriptors
+## Create your own attribute descriptors
 
-A property descriptor is a simple object following a few rules to make it work. An instruction how to create your own will follow.
+An attribute descriptor is a simple object following a few rules to make it work. An instruction how to create your own will follow.
