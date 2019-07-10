@@ -2,13 +2,11 @@
 title: Controllers - Overview
 ---
 
-# Getting started
-
-Let's create a simple counter component. It displays a number and two buttons to increment or decrement that number by the value of `1`. It also lets you define an initial value.
+# Controllers - Overview
 
 ## Create the controller
 
-This example uses the upcomming Vue reactivity RFC to track the current value. You can use whichever method you prefer.
+Let's create a simple counter component. It displays a number and two buttons to increment or decrement that number by the value of `1`. It also lets you define an initial value.
 
 ~~~ js
 import { defineController } from '@mana/controllers'
