@@ -17,10 +17,14 @@ You can parse the attribute like this:
 ~~~ js
 import { booleanAttribute } from '@mana/attributes'
 
-const yesNoAttribute = booleanAttribute({ trueValues: ['yes'], falseValues: ['no'], caseSensitive: false })
+// get the element
 const element = document.getElementById('some-element')
 
-const attribValue = yesNoAttribute.parse(element, 'data-some-bool-attrib')
+// define settings for `booleanAttribute()`
+const yesNoCI = { trueValues: ['yes'], falseValues: ['no'], caseSensitive: false }
+
+// read the attribute value using the attribute descriptor and the settings from above
+const attribValue = booleanAttribute(yesNoCI).parse(element, 'data-some-bool-attrib')
 
 attribValue // -> true
 ~~~
