@@ -1,5 +1,5 @@
 ---
-title: Core - Overview
+title: About Core
 ---
 
 # Mana Core

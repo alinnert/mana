@@ -1,5 +1,5 @@
 ---
-title: "Attributes ‒ Overview"
+title: About Attributes
 ---
 
 # Mana Attributes

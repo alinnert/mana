@@ -21,17 +21,20 @@ link = "/docs/"
 
 [[themeConfig.sidebar."/docs/"]]
 title = "Overview"
-path = "/docs/"
+collapsable = false
+children = [
+  "/docs/"
+]
 
 [[themeConfig.sidebar."/docs/"]]
-title = "@mana/core"
+title = "Core package"
 collapsable = false
 children = [
   "/docs/core/",
 ]
 
 [[themeConfig.sidebar."/docs/"]]
-title = "@mana/attributes"
+title = "Attributes package"
 collapsable = false
 children = [
   "/docs/attributes/",
@@ -39,10 +42,12 @@ children = [
 ]
 
 [[themeConfig.sidebar."/docs/"]]
-title = "@mana/controllers"
+title = "Controllers package"
 collapsable = false
 children = [
   "/docs/controllers/",
   "/docs/controllers/controllers",
   "/docs/controllers/templates",
+  "/docs/controllers/instance-scope",
+  
 ]

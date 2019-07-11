@@ -24,25 +24,23 @@ mana.defineController({
 })
 ~~~
 
-The property `properties` is an object that defines all possible properties for that controller. The key is the name of the property. The value is a configuration object that defines how that property behaves.
+The property `attributes` is an object that defines all possible properties for that controller. The **key** is how you reference the attribute's (converted) value. The **value** is a configuration object that defines how that attribute behaves.
 
-### Property Configuration Object
+### Attribute Configuration Object
 
 | Property | Type | Description |
 | -------- | ---- | ----------- |
 | `default` | `string` | The default value. |
-| `type` | `PropertyTypeDescriptor` | The type descriptor. It's used to convert values between usable values and HTML attributes (which are always strings). |
+| `type` | `AttributeTypeDescriptor` | The type descriptor. It's used to convert values between usable values and HTML attributes (which are always strings). |
 
-### Property Type Descriptor
-
-
+### Attribute Type Descriptor
 
 ## Targets
 
 ## Callbacks
 
-**`setup`** ‒ gets called once when this controller gets registered.
+**`onSetup`** ‒ gets called once when this controller gets registered.
 
-**`connect`** ‒ gets called once for every element that connects to this controller.
+**`onConnect`** ‒ gets called once for every element that connects to this controller.
 
-**`disconnect`** ‒ gets called once the controller class is being removed from an element.
+**`onDisconnect`** ‒ gets called once the controller class is being removed from an element.

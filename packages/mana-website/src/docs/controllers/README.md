@@ -1,16 +1,18 @@
 ---
-title: Controllers - Overview
+title: About Controllers
 ---
 
 # Controllers - Overview
 
-## Create the controller
+This package turns Mana into a small, more opinionated framework that allows you to achieve more with less code. You can define attributes, targets, events and so on.
+
+## Example
 
 Let's create a simple counter component. It displays a number and two buttons to increment or decrement that number by the value of `1`. It also lets you define an initial value.
 
 ~~~ js
 import { defineController } from '@mana/controllers'
-import { numberProperty } from '@mana/properties'
+import { numberAttribute } from '@mana/attributes'
 
 defineController({
   // This is the name of the controller.
@@ -18,10 +20,10 @@ defineController({
   // In this case: @counter
   name: 'counter',
 
-  // This are the properties.
+  // This are the attributes.
   // You can use them to pass initial data and to store your current state.
-  properties: {
-    initialValue: { default: 0, type: numberProperty() }
+  attributes: {
+    initialValue: { default: 0, type: numberAttribute() }
   },
 
   // Targets give you access to nested elements.
@@ -34,7 +36,7 @@ defineController({
 
   // This callback function gets called when some element receives the `@counter`
   // or if an element gets created with a `@counter` class.
-  connect () {
+  onConnect () {
     this.target.incrementButton.on('click', () => {
       this.properties.counterValue.value += 1
     })

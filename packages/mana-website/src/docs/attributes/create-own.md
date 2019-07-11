@@ -1,11 +1,11 @@
 ---
-title: Create your own property descriptor
+title: Create your own attribute descriptor
 ---
 
-# Create your own property descriptor
+# Create your own attribute descriptor
 
 ~~~ js
-const somePropDescriptor = (options) => {
+const someAttrDescriptor = (options) => {
   // do something with `options`
 
   return {

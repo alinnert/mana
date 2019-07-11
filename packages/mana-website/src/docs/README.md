@@ -1,5 +1,5 @@
 ---
-title: Mana - Overview
+title: Available packages
 ---
 
 # Mana
