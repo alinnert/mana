@@ -33,4 +33,4 @@ That's it! Now every element with a `@lightbox` class becomes a lightbox. It doe
 
 ## How can I write my own controller?
 
-You register a new controller with the `mana.defineController(controllerConfig)` function. The `controllerConfig` is an object that contains your controller code. For more information see the [documentation](/docs).
+You register a new controller with the `mana.defineController(controllerConfig)` function. The `controllerConfig` is an object that contains your controller code. For more information see the [documentation](/docs/).
