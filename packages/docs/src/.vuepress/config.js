@@ -1,6 +1,6 @@
 module.exports = {
   title: 'Mana [WIP]',
-  base: '/mana-website/',
+  base: '/mana/',
 
   head: [
     ['link', { rel: 'icon', href: '/favicon.png', sizes: '16x16' }]
