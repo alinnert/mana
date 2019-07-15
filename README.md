@@ -1,4 +1,4 @@
-# Mana
+![Mana](/packages/docs/src/.vuepress/public/brand-350.png)
 
 > Mana is a JavaScript UI framework for existing HTML.
 
