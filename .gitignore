@@ -1,2 +1,3 @@
-/node_modules
-/pkg
+/packages/docs/src/.vuepress/dist
+node_modules
+pkg
