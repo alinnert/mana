@@ -1,5 +1,5 @@
 {
-  "name": "properties",
+  "name": "@mana/attributes",
   "version": "1.0.0",
   "description": "Property descriptors for Mana",
   "author": "Andreas Linnert <andreas@linnertmedia.de>",
