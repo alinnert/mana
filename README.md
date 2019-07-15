@@ -4,8 +4,6 @@
 
 **Status:** WIP
 
-*Current version is located in branch rev9 (= API revision 9). My plan is to split up Mana into multiple packages inside a monorepo. That also means there's going to be a (usable) base library underneath the framework which can be used for simple controllers.*
-
 **Documentation [WIP]:** https://alinnert.github.io/mana
 
 ## What Mana is
