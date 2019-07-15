@@ -10,13 +10,13 @@
 
 ## What Mana is
 
-Mana is a UI framework that attaches itself to already existing HTML. This HTML can be manually HTML, generated statically, or by a CMS like Drupal etc.
+Mana is a framework that attaches controllers to already existing HTML. This HTML can be written manually, by a static site generator or a CMS. Mana allows you to manipulate HTML or add interactivity to it.
 
-So, you can use Mana to bind JS logic to ordinary websites in a componentized way. That way you could create "components" that can be attached to any HTML by using classes and attributes. It also helps you write code that's independent of project specific style classes. I.e. your "components" will work on Bootstrap websites just as fine as on ones that are built on top of a custom Sass framework.
+You can use Mana to bind JS logic to ordinary websites in a componentized way. That way you could create "components" that can be attached to any HTML by using classes and attributes. It also helps you write code that's independent of project specific style classes. I.e. your "components" will work on Bootstrap websites just as fine as on ones that are built on top of a custom Sass framework.
 
 ## What Mana is not
 
-Mana is **not** a UI framework for web apps, like React and Vue, that generates and manages HTML itself. There is no virtual DOM, no render method, and nothing alike.
+Mana is **not** a UI framework for web apps, like React and Vue, that generates and manages HTML itself. There is no virtual DOM, no render method, no anything.
 
 ## What does it look like?
 
