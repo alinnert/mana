@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "lerna run build",
-    "docs:dev": "lerna run dev --scope docs"
+    "docs:dev": "lerna run dev --scope @mana/docs --stream"
   },
   "devDependencies": {
     "@pika/pack": "^0.4.0",
