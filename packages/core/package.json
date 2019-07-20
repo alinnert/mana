@@ -23,7 +23,8 @@
     "url": "git+https://github.com/alinnert/mana.git"
   },
   "scripts": {
-    "build": "pack build"
+    "build": "pack build",
+    "lint": "eslint src/**/*.ts"
   },
   "bugs": {
     "url": "https://github.com/alinnert/mana/issues"
