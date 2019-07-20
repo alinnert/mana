@@ -9,21 +9,21 @@ The core of Mana. Provides the possibility to watch for certain elements to appe
 ## Usage
 
 ~~~ js
-import { registerSelector } from '@mana/core'
+import { watchSelector } from '@mana/core'
 
-registerSelector({
-  root: document,
+watchSelector({
   selector: '.slide-in',
+  context: document,
   
-  onAdded (mutationRecord) {
+  onAdded (mutationRecord, data) {
     // An element matching the provided selector got added to the DOM.
   },
   
-  onRemoved (mutationRecord) {
+  onRemoved (mutationRecord, data) {
     // An element matching the provided selector got removed from the DOM.
   },
   
-  onAttributeChanged (mutationRecord) {
+  onAttributeChanged (mutationRecord, data) {
     // An element matching the provided selector changed one of its attributes.
   }
 })
