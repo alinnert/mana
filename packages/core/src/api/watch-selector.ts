@@ -2,13 +2,13 @@ import { registerSelector } from '../core/mutation-observer'
 import { returnValue } from '../utils'
 
 // #region types
-export interface WatchSelectorContext {
+export interface WatchSelectorInstanceData {
   [key: string]: unknown;
 }
 
 export type WatchSelectorCallback = (
   mutationRecord: MutationRecord,
-  context: WatchSelectorContext
+  data: WatchSelectorInstanceData
 ) => void
 
 export interface WatchSelectorOptions {
