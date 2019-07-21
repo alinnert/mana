@@ -37,11 +37,11 @@ attribValue // -> true
 
 This package will contain the following attribute descriptors:
 
-- booleanAttribute ‒ Parse attributes to strings. Which strings should be parsed to which value is customizable.
-- numberAttribute ‒ Parses numbers.
-- stringAttribute ‒ Parses strings. Can be used to validate and manipulate strings.
-- listAttribute ‒ Parses a list of values and converts it into an array. You can use other attribute descriptors to parse each individual item.
-- jsonAttribute ‒ Parses a JSON string.
+- **booleanAttribute**: Parse attributes to strings. Which strings should be parsed to which value is customizable.
+- **numberAttribute**: Parses numbers.
+- **stringAttribute**: Parses strings. Can be used to validate and manipulate strings.
+- **listAttribute**: Parses a list of values and converts it into an array. You can use other attribute descriptors to parse each individual item.
+- **jsonAttribute**: Parses a JSON string.
 - maybe more...
 
 ## Create your own attribute descriptors
