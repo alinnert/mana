@@ -10,7 +10,26 @@ export interface SelectorRegister {
 
 const selectors: SelectorRegister = {}
 
-const mutationCallback: MutationCallback = (): void => { }
+/**
+ * Mutation Callback for the `MutationObserver`. Handles all mutations.
+ * @property mutations See: https://devdocs.io/dom/mutationrecord
+ * @property observer See: https://devdocs.io/dom/mutationobserver
+ */
+const mutationCallback: MutationCallback = (mutations, observer): void => {
+  for (const mutation of mutations) {
+    for (const addedNode of mutation.addedNodes) {
+
+    }
+
+    for (const removedNode of mutation.removedNodes) {
+
+    }
+
+    if (mutation.attributeName !== null) {
+      
+    }
+  }
+}
 
 /**
  * Initializes the `MutationObserver`. Starts as soon as the first selector gets registered.
