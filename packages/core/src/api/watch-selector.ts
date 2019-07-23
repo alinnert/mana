@@ -17,7 +17,7 @@ export type AttributeValueChangedCallback = (
 ) => void
 
 export interface WatchClassNameOptions {
-  selector: string | null;
+  className: string | null;
   onAdded?: ElementExistenceChangedCallback;
   onRemoved?: ElementExistenceChangedCallback;
   onAttributeChanged?: AttributeValueChangedCallback;
@@ -25,7 +25,7 @@ export interface WatchClassNameOptions {
 // #endregion
 
 const watchClassNameDefaultOptions: WatchClassNameOptions = {
-  selector: null,
+  className: null,
   onAdded: returnValue(undefined),
   onRemoved: returnValue(undefined),
   onAttributeChanged: returnValue(undefined)
@@ -37,7 +37,7 @@ const watchClassNameDefaultOptions: WatchClassNameOptions = {
  * @param watchClassNameUserOptions Options to define the watcher.
  */
 export function watchClassName(watchClassNameUserOptions: WatchClassNameOptions): void {
-  const { selector, ...options } = Object.assign(
+  const { className: selector, ...options } = Object.assign(
     {},
     watchClassNameDefaultOptions,
     watchClassNameUserOptions

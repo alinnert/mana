@@ -1,7 +1,7 @@
 import { WatchClassNameOptions } from '../api/watch-selector'
 
 // #region types
-export type WatcherOptions = Omit<WatchClassNameOptions, 'selector'>
+export type WatcherOptions = Omit<WatchClassNameOptions, 'className'>
 
 export interface WatchersList {
   [className: string]: WatcherOptions;
