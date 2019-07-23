@@ -6,23 +6,26 @@ export interface WatchSelectorInstanceData {
   [key: string]: unknown;
 }
 
-export type WatchSelectorCallback = (
-  mutationRecord: MutationRecord,
-  data: WatchSelectorInstanceData
+export type ElementExistenceChangedCallback = (
+  element: HTMLElement
 ) => void
 
-export interface WatchSelectorOptions {
+export type AttributeValueChangedCallback = (
+  element: HTMLElement,
+  attributeValue: string,
+  attributeName: string
+) => void
+
+export interface WatchClassNameOptions {
   selector: string | null;
-  context?: HTMLElement;
-  onAdded?: WatchSelectorCallback;
-  onRemoved?: WatchSelectorCallback;
-  onAttributeChanged?: WatchSelectorCallback;
+  onAdded?: ElementExistenceChangedCallback;
+  onRemoved?: ElementExistenceChangedCallback;
+  onAttributeChanged?: AttributeValueChangedCallback;
 }
 // #endregion
 
-const watchSelectorDefaultOptions: WatchSelectorOptions = {
+const watchClassNameDefaultOptions: WatchClassNameOptions = {
   selector: null,
-  context: document.body,
   onAdded: returnValue(undefined),
   onRemoved: returnValue(undefined),
   onAttributeChanged: returnValue(undefined)
@@ -31,13 +34,13 @@ const watchSelectorDefaultOptions: WatchSelectorOptions = {
 /**
  * Add a new watcher. Watches for specific elements and executes functions
  * on addition and removal from DOM, and also on attribute manipulation.
- * @param userOptions Options to define the watcher.
+ * @param watchClassNameUserOptions Options to define the watcher.
  */
-export function watchSelector (userOptions: WatchSelectorOptions): void {
+export function watchClassName(watchClassNameUserOptions: WatchClassNameOptions): void {
   const { selector, ...options } = Object.assign(
     {},
-    watchSelectorDefaultOptions,
-    userOptions
+    watchClassNameDefaultOptions,
+    watchClassNameUserOptions
   )
 
   registerSelector(selector, options)
