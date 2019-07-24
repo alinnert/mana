@@ -1,1 +1,1 @@
-export * from './api/watch-selector'
+export * from './api/watch-class-name'

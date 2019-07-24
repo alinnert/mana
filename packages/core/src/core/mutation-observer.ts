@@ -1,4 +1,4 @@
-import { WatcherOptions } from '../api/watch-selector'
+import { WatcherOptions } from '../api/watch-class-name'
 
 // #region types
 export interface WatchersList {
