@@ -1,5 +1,4 @@
-import { registerSelector } from '../core/mutation-observer'
-import { returnValue } from '../utils'
+import { initObserver, watchersList } from '../core/mutation-observer'
 
 // #region types
 export interface WatchSelectorInstanceData {
@@ -13,9 +12,9 @@ export type ElementExistenceChangedCallback = (
 export type AttributeValueChangedCallback = (
   element: HTMLElement,
   attributeData: {
-    attributeName: string,
-    value: string,
-    oldValue: string | null
+    attributeName: string;
+    value: string | null;
+    oldValue: string | null;
   }
 ) => void
 
@@ -26,23 +25,15 @@ export interface WatcherOptions {
 }
 // #endregion
 
-const watchClassNameDefaultOptions: WatcherOptions = {
-  onAdded: returnValue(undefined),
-  onRemoved: returnValue(undefined),
-  onAttributeChanged: returnValue(undefined)
-}
-
 /**
  * Add a new watcher. Watches for specific elements and executes functions
  * on addition and removal from DOM, and also on attribute manipulation.
  * @param watchClassNameUserOptions Options to define the watcher.
  */
-export function watchClassName(className: string, watchClassNameUserOptions: WatcherOptions): void {
-  const options = Object.assign(
-    {},
-    watchClassNameDefaultOptions,
-    watchClassNameUserOptions
-  )
+export function watchClassName (className: string, options: WatcherOptions): void {
+  if (className === null) { return }
+  if (watchersList.hasOwnProperty(className)) { return }
+  if (Object.keys(watchersList).length === 0) { initObserver() }
 
-  registerSelector(className, options)
+  watchersList[className] = options
 }

@@ -1,12 +1,14 @@
 import { WatcherOptions } from '../api/watch-class-name'
+import { handleElementExistenceChange } from './handleElementExistenceChange'
+import { handleAttributeChange } from './handleAttributeChange'
 
 // #region types
 export interface WatchersList {
   [className: string]: WatcherOptions;
 }
 
-export type ClassElementMatches = {
-  [className: string]: HTMLElement[]
+export interface ClassElementMatches {
+  [className: string]: HTMLElement[];
 }
 
 export enum ChangeType {
@@ -18,14 +20,14 @@ export enum ChangeType {
 /**
  * The object that stores all registered watches and their options
  */
-const watchersList: WatchersList = {}
+export const watchersList: WatchersList = {}
 
 /**
  * Builds a CSS selector string using the provided class names.
  * @param classNames A list of class names
  */
-function buildSelectorFromClasses(classNames: string[]): string {
-  return classNames.map(className => `[class~="${className}"]`).join(',')
+function buildSelectorFromClasses (classNames: string[]): string {
+  return classNames.map((className): string => `[class~="${className}"]`).join(',')
 }
 
 /**
@@ -34,7 +36,7 @@ function buildSelectorFromClasses(classNames: string[]): string {
  * @param nodes A nodeList to iterate through
  * @param registeredClassNames An array of class names to find in the nodeList
  */
-function fetchWatchedElements(
+function fetchWatchedElements (
   nodes: NodeList,
   registeredClassNames: string[]
 ): ClassElementMatches {
@@ -68,30 +70,9 @@ function fetchWatchedElements(
   return matches
 }
 
-const getCallbackNameFromChangeType = (
-  changeType: ChangeType
-): keyof Pick<WatcherOptions, "onAdded" | "onRemoved"> => {
-  const callbackNames = {
-    [ChangeType.ADDED]: () => 'onAdded' as const,
-    [ChangeType.REMOVED]: () => 'onRemoved' as const
-  }
-
-  return callbackNames[changeType]()
-}
-
-function handdleElementExistenceChange(
-  matches: ClassElementMatches,
-  changeType: ChangeType
-) {
-  for (const [className, elements] of Object.entries(matches)) {
-    for (const element of elements) {
-      const callbackName = getCallbackNameFromChangeType(changeType)
-      const callbackFunction = watchersList[className][callbackName]
-      if (typeof callbackFunction === 'function') {
-        callbackFunction(element)
-      }
-    }
-  }
+function getWatchedClassesFromElement (element: HTMLElement): string[] {
+  const allWatchedClasses = Object.keys(watchersList)
+  return allWatchedClasses.filter((className): boolean => element.classList.contains(className))
 }
 
 /**
@@ -99,27 +80,33 @@ function handdleElementExistenceChange(
  * @property mutations See: https://devdocs.io/dom/mutationrecord
  * @property observer See: https://devdocs.io/dom/mutationobserver
  */
-const mutationCallback: MutationCallback = (mutations, observer): void => {
+const mutationCallback: MutationCallback = (mutations): void => {
   for (const mutation of mutations) {
-    // TODO Maybe I should check the value of `mutation.type`?
-    // TODO Sounds like a good idea, right? RIGHT?
     const registeredClasses = Object.keys(watchersList)
 
-    // Handle added elements
-    const addedWatchedElements =
-      fetchWatchedElements(mutation.addedNodes, registeredClasses)
+    if (mutation.type === 'childList') {
+      if (mutation.addedNodes.length) {
+        const addedWatchedElements = fetchWatchedElements(mutation.addedNodes, registeredClasses)
+        handleElementExistenceChange(addedWatchedElements, ChangeType.ADDED)
+      }
 
-    handdleElementExistenceChange(addedWatchedElements, ChangeType.ADDED)
+      if (mutation.removedNodes.length) {
+        const removedWatchedElements = fetchWatchedElements(mutation.removedNodes, registeredClasses)
+        handleElementExistenceChange(removedWatchedElements, ChangeType.REMOVED)
+      }
+    } else if (mutation.type === 'attributes') {
+      if (mutation.attributeName !== null) {
+        const affectedWatchedClasses = getWatchedClassesFromElement(mutation.target as HTMLElement)
+        const attributeValue = (mutation.target as HTMLElement).getAttribute(mutation.attributeName)
 
-    // Handle removed elements
-    const removedWatchedElements =
-      fetchWatchedElements(mutation.removedNodes, registeredClasses)
-
-    handdleElementExistenceChange(removedWatchedElements, ChangeType.REMOVED)
-
-    // Handle attribute changes
-    if (mutation.attributeName !== null) {
-      // TODO implement!
+        handleAttributeChange(
+          affectedWatchedClasses,
+          mutation.target as HTMLElement,
+          mutation.attributeName,
+          attributeValue,
+          mutation.oldValue
+        )
+      }
     }
   }
 }
@@ -127,7 +114,7 @@ const mutationCallback: MutationCallback = (mutations, observer): void => {
 /**
  * Initializes the `MutationObserver`. Starts as soon as the first selector gets registered.
  */
-function initObserver(): void {
+export function initObserver (): void {
   const options: MutationObserverInit = {
     childList: true,
     attributes: true,
@@ -140,22 +127,4 @@ function initObserver(): void {
   document.addEventListener('DOMContentLoaded', (): void => {
     observer.observe(document.body, options)
   })
-}
-
-/**
- * Registeres a new selector.
- * @param selector The selector that should be registered.
- * @param options The options to register the selector with.
- * @returns `true`: register successful / `false`: register *not* successful
- */
-export function registerSelector(
-  selector: string | null,
-  options: WatcherOptions
-): boolean {
-  if (selector === null) { return false }
-  if (watchersList.hasOwnProperty(selector)) { return false }
-  if (Object.keys(watchersList).length === 0) { initObserver() }
-
-  watchersList[selector] = options
-  return true
 }
