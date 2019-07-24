@@ -12,8 +12,11 @@ export type ElementExistenceChangedCallback = (
 
 export type AttributeValueChangedCallback = (
   element: HTMLElement,
-  attributeValue: string,
-  attributeName: string
+  attributeData: {
+    attributeName: string,
+    value: string,
+    oldValue: string | null
+  }
 ) => void
 
 export interface WatcherOptions {
