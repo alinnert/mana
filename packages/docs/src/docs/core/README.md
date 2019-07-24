@@ -13,15 +13,15 @@ import { watchClassName } from '@mana/core'
 
 watchClassName('slide-in', {
   onAdded (element) {
-    // An element matching the provided selector got added to the DOM.
+    // An element with class 'slide-in' got added to the DOM.
   },
   
   onRemoved (element) {
-    // An element matching the provided selector got removed from the DOM.
+    // An element with class 'slide-in' got removed from the DOM.
   },
   
-  onAttributeChanged (element, attributeValue, attributeName) {
-    // An element matching the provided selector changed one of its attributes.
+  onAttributeChanged (element, { attributeName, value, oldValue }) {
+    // An element with class 'slide-in' changed one of its attributes.
   }
 })
 ~~~
