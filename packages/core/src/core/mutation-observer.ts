@@ -1,6 +1,6 @@
 import { WatcherOptions } from '../api/watch-class-name'
-import { handleElementExistenceChange } from './handleElementExistenceChange'
-import { handleAttributeChange } from './handleAttributeChange'
+import { handleElementExistenceChange } from './handle-element-existence-change'
+import { handleAttributeChange } from './handle-attribute-change'
 
 // #region types
 export interface WatchersList {
