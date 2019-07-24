@@ -1,5 +1,8 @@
 import { watchersList } from './mutation-observer'
 
+/**
+ * Handles changed attributes from the MutationObserver
+ */
 export function handleAttributeChange (
   affectedWatchedClasses: string[],
   element: HTMLElement,

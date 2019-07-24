@@ -1,4 +1,4 @@
-import { initObserver, watchersList } from '../core/mutation-observer'
+import { watchersList } from '../core/mutation-observer'
 
 // #region types
 export interface WatchSelectorInstanceData {
@@ -33,7 +33,6 @@ export interface WatcherOptions {
 export function watchClassName (className: string, options: WatcherOptions): void {
   if (className === null) { return }
   if (watchersList.hasOwnProperty(className)) { return }
-  if (Object.keys(watchersList).length === 0) { initObserver() }
 
   watchersList[className] = options
 }
