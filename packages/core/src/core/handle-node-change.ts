@@ -1,12 +1,19 @@
 import { WatcherOptions } from '../api/watch-class-name'
 import { ChangeType, watchersList, ClassElementMatches } from './mutation-observer'
+import { ArgumentError } from './errors'
 
 /**
  * Builds a CSS selector string using the provided class names.
  * @param classNames A list of class names
  */
-function getSelectorFromClassNames (classNames: string[]): string {
-  return classNames.map((className): string => `[class~="${className}"]`).join(',')
+function getSelectorFromClassNames (classNames: string | string[]): string {
+  if (Array.isArray(classNames)) {
+    return classNames.map((className): string => `[class~="${className}"]`).join(',')
+  } else if (typeof classNames === 'string') {
+    return `[class~="${classNames}"]`
+  } else {
+    throw new ArgumentError('classNames', 'getSelectorFromClassNames', 'string or string[]', typeof classNames)
+  }
 }
 
 /**
@@ -16,8 +23,8 @@ function getSelectorFromClassNames (classNames: string[]): string {
  * @param registeredClassNames An array of class names to find in the nodeList
  */
 function getWatchedElementsFromNodeList (
-  nodes: NodeList,
-  registeredClassNames: string[]
+  nodes: NodeList | HTMLElement[],
+  registeredClassNames: string | string[]
 ): ClassElementMatches {
   const matches: ClassElementMatches = {}
   const registeredClassesSelector = getSelectorFromClassNames(registeredClassNames)
@@ -52,8 +59,12 @@ function getWatchedElementsFromNodeList (
 /**
  * Handles changed nodes from the MutationObserver
  */
-export function handleNodeChange (nodes: NodeList, changeType: ChangeType): void {
-  const matches = getWatchedElementsFromNodeList(nodes, Object.keys(watchersList))
+export function handleNodeChange (
+  nodes: NodeList | HTMLElement[],
+  changeType: ChangeType,
+  classNames: string | string[] = Object.keys(watchersList)
+): void {
+  const matches = getWatchedElementsFromNodeList(nodes, classNames)
 
   for (const [className, elements] of Object.entries(matches)) {
     for (const element of elements) {

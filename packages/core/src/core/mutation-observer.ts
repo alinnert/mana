@@ -29,8 +29,6 @@ function getWatchedClassesFromElement (element: HTMLElement): string[] {
 
 /**
  * Mutation Callback for the `MutationObserver`. Handles all mutations.
- * @property mutations See: https://devdocs.io/dom/mutationrecord
- * @property observer See: https://devdocs.io/dom/mutationobserver
  */
 const mutationCallback: MutationCallback = (mutations): void => {
   for (const mutation of mutations) {

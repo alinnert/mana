@@ -1,4 +1,5 @@
-import { watchersList } from '../core/mutation-observer'
+import { watchersList, ChangeType } from '../core/mutation-observer'
+import { handleNodeChange } from '../core/handle-node-change'
 
 // #region types
 export interface WatchSelectorInstanceData {
@@ -35,4 +36,5 @@ export function watchClassName (className: string, options: WatcherOptions): voi
   if (watchersList.hasOwnProperty(className)) { return }
 
   watchersList[className] = options
+  handleNodeChange([document.body], ChangeType.ADDED, className)
 }
