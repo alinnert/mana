@@ -101,6 +101,8 @@ function handdleElementExistenceChange(
  */
 const mutationCallback: MutationCallback = (mutations, observer): void => {
   for (const mutation of mutations) {
+    // TODO Maybe I should check the value of `mutation.type`?
+    // TODO Sounds like a good idea, right? RIGHT?
     const registeredClasses = Object.keys(watchersList)
 
     // Handle added elements
