@@ -10,21 +10,21 @@
     "docs:build": "lerna run build --scope @mana/docs --stream"
   },
   "devDependencies": {
-    "@pika/pack": "^0.4.0",
-    "@pika/plugin-build-umd": "^0.4.0",
-    "@pika/plugin-build-web": "^0.4.0",
-    "@pika/plugin-bundle-web": "^0.4.0",
-    "@pika/plugin-ts-standard-pkg": "^0.4.0",
-    "@typescript-eslint/eslint-plugin": "^1.13.0",
-    "@typescript-eslint/parser": "^1.13.0",
-    "eslint": "^6.0.1",
-    "eslint-config-standard": "^12.0.0",
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-umd": "^0.6.0",
+    "@pika/plugin-build-web": "^0.6.0",
+    "@pika/plugin-bundle-web": "^0.6.0",
+    "@pika/plugin-ts-standard-pkg": "^0.6.0",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "eslint": "^6.3.0",
+    "eslint-config-standard": "^14.1.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-node": "^9.2.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "lerna": "^3.16.1",
-    "typescript": "^3.5.3",
-    "vuepress": "^1.0.2"
+    "eslint-plugin-standard": "^4.0.1",
+    "lerna": "^3.16.4",
+    "typescript": "^3.6.2",
+    "vuepress": "^1.0.3"
   }
 }
