@@ -24,7 +24,8 @@ export const watchersList: WatchersList = {}
 
 function getWatchedClassesFromElement (element: HTMLElement): string[] {
   const allWatchedClasses = Object.keys(watchersList)
-  return allWatchedClasses.filter((className): boolean => element.classList.contains(className))
+  return allWatchedClasses
+    .filter((className): boolean => element.classList.contains(className))
 }
 
 /**
@@ -42,15 +43,18 @@ const mutationCallback: MutationCallback = (mutations): void => {
       }
     } else if (mutation.type === 'attributes') {
       if (mutation.attributeName !== null) {
-        const affectedWatchedClasses = getWatchedClassesFromElement(mutation.target as HTMLElement)
-        const attributeValue = (mutation.target as HTMLElement).getAttribute(mutation.attributeName)
+        const affectedWatchedClasses = getWatchedClassesFromElement(
+          mutation.target as HTMLElement,
+        )
+        const attributeValue = (mutation.target as HTMLElement)
+          .getAttribute(mutation.attributeName)
 
         handleAttributeChange(
           affectedWatchedClasses,
           mutation.target as HTMLElement,
           mutation.attributeName,
           attributeValue,
-          mutation.oldValue
+          mutation.oldValue,
         )
       }
     }
@@ -58,7 +62,8 @@ const mutationCallback: MutationCallback = (mutations): void => {
 }
 
 /**
- * Initializes the `MutationObserver`. Starts as soon as the first selector gets registered.
+ * Initializes the `MutationObserver`.
+ * Starts as soon as the first selector gets registered.
  */
 export function initCore (): void {
   const options: MutationObserverInit = {

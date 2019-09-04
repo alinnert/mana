@@ -12,7 +12,12 @@ function getSelectorFromClassNames (classNames: string | string[]): string {
   } else if (typeof classNames === 'string') {
     return `[class~="${classNames}"]`
   } else {
-    throw new ArgumentError('classNames', 'getSelectorFromClassNames', 'string or string[]', typeof classNames)
+    throw new ArgumentError(
+      'classNames',
+      'getSelectorFromClassNames',
+      'string or string[]',
+      typeof classNames,
+    )
   }
 }
 
