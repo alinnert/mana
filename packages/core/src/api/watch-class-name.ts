@@ -3,7 +3,7 @@ import { handleNodeChange } from '../core/handle-node-change'
 
 // #region types
 export interface WatchSelectorInstanceData {
-  [key: string]: unknown;
+  [key: string]: unknown
 }
 
 export type ElementExistenceChangedCallback = (
@@ -13,16 +13,16 @@ export type ElementExistenceChangedCallback = (
 export type AttributeValueChangedCallback = (
   element: HTMLElement,
   attributeData: {
-    attributeName: string;
-    value: string | null;
-    oldValue: string | null;
+    attributeName: string
+    value: string | null
+    oldValue: string | null
   }
 ) => void
 
 export interface WatcherOptions {
-  onAdded?: ElementExistenceChangedCallback;
-  onRemoved?: ElementExistenceChangedCallback;
-  onAttributeChanged?: AttributeValueChangedCallback;
+  onAdded?: ElementExistenceChangedCallback
+  onRemoved?: ElementExistenceChangedCallback
+  onAttributeChanged?: AttributeValueChangedCallback
 }
 // #endregion
 
@@ -33,7 +33,7 @@ export interface WatcherOptions {
  */
 export function watchClassName (className: string, options: WatcherOptions): void {
   if (className === null) { return }
-  if (watchersList.hasOwnProperty(className)) { return }
+  if (className in watchersList) { return }
 
   watchersList[className] = options
   handleNodeChange([document.body], ChangeType.ADDED, className)

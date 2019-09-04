@@ -4,11 +4,11 @@ import { handleAttributeChange } from './handle-attribute-change'
 
 // #region types
 export interface WatchersList {
-  [className: string]: WatcherOptions;
+  [className: string]: WatcherOptions
 }
 
 export interface ClassElementMatches {
-  [className: string]: HTMLElement[];
+  [className: string]: HTMLElement[]
 }
 
 export enum ChangeType {
@@ -44,7 +44,7 @@ const mutationCallback: MutationCallback = (mutations): void => {
     } else if (mutation.type === 'attributes') {
       if (mutation.attributeName !== null) {
         const affectedWatchedClasses = getWatchedClassesFromElement(
-          mutation.target as HTMLElement,
+          mutation.target as HTMLElement
         )
         const attributeValue = (mutation.target as HTMLElement)
           .getAttribute(mutation.attributeName)
@@ -54,7 +54,7 @@ const mutationCallback: MutationCallback = (mutations): void => {
           mutation.target as HTMLElement,
           mutation.attributeName,
           attributeValue,
-          mutation.oldValue,
+          mutation.oldValue
         )
       }
     }

@@ -9,6 +9,15 @@ module.exports = {
   env: { browser: true },
   rules: {
     indent: 'off',
-    '@typescript-eslint/indent': ['error', 2]
-  }
+    '@typescript-eslint/indent': ['error', 2],
+    '@typescript-eslint/member-delimiter-style': ['error', {
+      multiline: { delimiter: 'none' },
+      singleline: { delimiter: 'semi', requireLast: false },
+      overrides: {
+        interface: {
+          multiline: { delimiter: 'none' },
+        },
+      },
+    }],
+  },
 }
