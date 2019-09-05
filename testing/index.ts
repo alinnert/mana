@@ -1,32 +1,38 @@
-import * as puppeteer from 'puppeteer-core'
+import * as puppeteer from 'puppeteer'
 import * as serveHandler from 'serve-handler'
 import { createServer } from 'http'
 import { foobarTest } from './specs/foobar'
+import chalk from 'chalk'
 
 const serverPort = 8800
 
-export function handleError (message: string): void {
-  console.error(`error: ${message}`)
-}
+let browser: puppeteer.Browser
 
-async function startServer (): Promise<void> {
+function startServer (): void {
   const server = createServer((request, response) => {
-    return serveHandler(request, response)
+    return serveHandler(request, response, {
+      public: 'testing/page'
+    })
   })
   server.listen(serverPort)
 }
 
 async function startPuppeteer (): Promise<void> {
-  const browser = await puppeteer.launch()
-  const page = await browser.newPage()
+  browser = await puppeteer.launch()
+  const context = await browser.createIncognitoBrowserContext()
+  const page = await context.newPage()
 
   await page.goto(`http://localhost:${serverPort}`)
-  foobarTest(page)
+  await foobarTest(page)
+  await browser.close()
 }
 
 async function main (): Promise<void> {
-  await startServer()
+  startServer()
   await startPuppeteer()
+
+  console.log(chalk`{green ✔ All tests OK}\n`)
+  process.exit(0)
 }
 
 main()

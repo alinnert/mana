@@ -1,5 +1,17 @@
-import * as puppeteer from 'puppeteer-core'
+import * as puppeteer from 'puppeteer'
+import { handleError } from '../errors'
 
 export async function foobarTest (page: puppeteer.Page): Promise<void> {
-  // TODO: implement me!
+  try {
+    await page.waitForSelector('.foobar')
+  } catch (error) {
+    handleError('Element .foobar does not appear')
+  }
+
+  const foobarTextContent = await page.$eval('.foobar', el => el.textContent)
+  const expectedText = 'hello world'
+
+  if (foobarTextContent !== expectedText) {
+    handleError(`Expected element .foobar to contain text "${expectedText}". Instead it contains "${foobarTextContent}"`)
+  }
 }
