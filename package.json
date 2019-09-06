@@ -3,10 +3,10 @@
   "private": true,
   "scripts": {
     "install": "lerna bootstrap",
-    "test": "ts-node testing/index.ts",
-    "build": "lerna run build --stream",
-    "lint": "lerna run lint --stream",
-    "lint:fix": "lerna run lint --stream -- -- --fix",
+    "test": "lerna run test",
+    "libs:build": "lerna run build --stream",
+    "libs:lint": "lerna run lint --stream",
+    "libs:lint-fix": "lerna run lint --stream -- -- --fix",
     "docs:dev": "lerna run dev --scope @mana/docs --stream",
     "docs:build": "lerna run build --scope @mana/docs --stream"
   },
@@ -17,6 +17,7 @@
     "@pika/plugin-bundle-web": "^0.6.0",
     "@pika/plugin-ts-standard-pkg": "^0.6.0",
     "@types/puppeteer-core": "^1.9.0",
+    "@types/serve-handler": "^6.1.0",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
     "chalk": "^2.4.2",

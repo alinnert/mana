@@ -1,5 +1,6 @@
-import * as puppeteer from 'puppeteer'
-import * as serveHandler from 'serve-handler'
+import puppeteer from 'puppeteer'
+import serveHandler from 'serve-handler'
+import { resolve } from 'path'
 import { createServer } from 'http'
 import { foobarTest } from './specs/foobar'
 import chalk from 'chalk'
@@ -11,7 +12,7 @@ let browser: puppeteer.Browser
 function startServer (): void {
   const server = createServer((request, response) => {
     return serveHandler(request, response, {
-      public: 'testing/page'
+      public: resolve(__dirname, '../page')
     })
   })
   server.listen(serverPort)

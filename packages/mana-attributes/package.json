@@ -1,19 +1,13 @@
 {
-  "name": "@mana/core",
+  "name": "@mana/attributes",
   "version": "1.0.0",
-  "description": "The mana core.",
-  "keywords": [
-    "dom",
-    "library",
-    "mutationObserver"
-  ],
+  "description": "Property descriptors for Mana",
   "author": "Andreas Linnert <andreas@linnertmedia.de>",
-  "homepage": "https://alinnert.github.io/mana-website/",
+  "homepage": "https://alinnert.github.io/mana",
   "license": "MIT",
   "main": "src/index.js",
   "directories": {
-    "src": "src",
-    "test": "__tests__"
+    "src": "src"
   },
   "files": [
     "src"
@@ -23,8 +17,7 @@
     "url": "git+https://github.com/alinnert/mana.git"
   },
   "scripts": {
-    "build": "pack build",
-    "lint": "eslint src/**/*.ts"
+    "build": "pack build"
   },
   "bugs": {
     "url": "https://github.com/alinnert/mana/issues"
