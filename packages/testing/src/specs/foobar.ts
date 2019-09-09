@@ -1,5 +1,5 @@
 import * as puppeteer from 'puppeteer'
-import { handleError } from '../errors'
+import { handleError } from '../results'
 
 export async function foobarTest (page: puppeteer.Page): Promise<void> {
   try {

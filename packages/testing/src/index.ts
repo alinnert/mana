@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import { createServer } from 'http'
 import { foobarTest } from './specs/foobar'
 import chalk from 'chalk'
+import { handleSuccess } from './results'
 
 const serverPort = 8800
 
@@ -32,7 +33,7 @@ async function main (): Promise<void> {
   startServer()
   await startPuppeteer()
 
-  console.log(chalk`{green ✔ All tests OK}\n`)
+  handleSuccess()
   process.exit(0)
 }
 

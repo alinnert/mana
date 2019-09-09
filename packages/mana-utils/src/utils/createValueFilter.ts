@@ -16,12 +16,12 @@ export function createValueFilter (options: ValueFilterOptions): ValueFilterFunc
   }
 
   const previousValue: unknown = null
-  let timeout: number = null
+  let timeout: ReturnType<typeof setTimeout> = null
 
   return function (value: unknown, callback: ValueFilterCallback): void {
-    if (timeout !== null) { window.clearTimeout(timeout) }
+    if (timeout !== null) { clearTimeout(timeout) }
 
-    timeout = window.setTimeout(() => {
+    timeout = setTimeout(() => {
       timeout = null
       if (ignoreSameValue && value === previousValue) { return }
       callback(value)
