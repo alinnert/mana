@@ -31,14 +31,6 @@ module.exports = {
           ]
         },
         {
-          title: 'Package "attributes"',
-          collapsable: false,
-          children: [
-            '/docs/attributes/',
-            '/docs/attributes/create-own',
-          ]
-        },
-        {
           title: 'Package "controllers"',
           collapsable: false,
           children: [
@@ -47,7 +39,22 @@ module.exports = {
             '/docs/controllers/templates',
             '/docs/controllers/instance-scope',
           ]
-        }
+        },
+        {
+          title: 'Package "attributes"',
+          collapsable: false,
+          children: [
+            '/docs/attributes/',
+            '/docs/attributes/create-own',
+          ]
+        },
+        {
+          title: 'Package "utils"',
+          collapsable: false,
+          children: [
+            '/docs/utils/',
+          ]
+        },
       ]
     }
   }

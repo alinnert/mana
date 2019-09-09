@@ -12,14 +12,14 @@ This is the core functionality of Mana. It watches the DOM for specific elements
 
 [Read Core documentation](/docs/core/)
 
-## Attributes
-
-With this package you can parse HTML attributes and convert their value into any data that is useful for your application.
-
-[Read Attributes documentation](/docs/attributes/)
-
 ## Controllers
 
 This package extends the functionality of the Core package and allows you to write full controllers that can add more complex functionality to your HTML.
 
 [Read Controllers documentation](/docs/controllers/)
+
+## Attributes
+
+With this package you can parse HTML attributes and convert their value into any data that is useful for your application.
+
+[Read Attributes documentation](/docs/attributes/)
