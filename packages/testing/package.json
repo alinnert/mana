@@ -5,6 +5,7 @@
   "author": "Andreas Linnert <andreas@linnertmedia.de>",
   "homepage": "https://github.com/alinnert/mana#readme",
   "license": "MIT",
+  "private": true,
   "publishConfig": {
     "access": "public"
   },

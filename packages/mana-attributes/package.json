@@ -6,6 +6,7 @@
   "homepage": "https://alinnert.github.io/mana",
   "license": "MIT",
   "main": "src/index.js",
+  "private": true,
   "directories": {
     "src": "src"
   },

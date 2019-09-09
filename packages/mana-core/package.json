@@ -2,6 +2,7 @@
   "name": "@mana/core",
   "version": "1.0.0",
   "description": "The mana core",
+  "private": true,
   "keywords": [
     "dom",
     "library",

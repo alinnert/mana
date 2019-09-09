@@ -2,6 +2,7 @@
   "name": "@mana/controllers",
   "version": "1.0.0",
   "description": "A higher-level abstraction over @mana/core that allows you to create controllers that can be attached to the DOM",
+  "private": true,
   "keywords": [
     "dom",
     "controller",
