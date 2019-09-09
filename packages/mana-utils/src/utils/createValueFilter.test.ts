@@ -40,7 +40,7 @@ async function runTestTable (
 }
 
 {
-  // Basic test with ignoreSameValue = true
+  // Tests with ignoreSameValue = true
   const setValue = createValueFilter({ ignoreSameValue: true, wait: 100 })
   const valueLog: string[] = []
 
@@ -58,7 +58,7 @@ async function runTestTable (
 }
 
 {
-  // Basic test with ignoreSameValue = true and longer timeout
+  // Tests with ignoreSameValue = true and long timeout
   const setValue = createValueFilter({ ignoreSameValue: true, wait: 1000 })
   const valueLog: string[] = []
 
@@ -80,7 +80,7 @@ async function runTestTable (
 }
 
 {
-  // Basic test with ignoreSameValue = false
+  // Tests with ignoreSameValue = false
   const setValue = createValueFilter({ ignoreSameValue: false, wait: 100 })
   const valueLog: string[] = []
 
