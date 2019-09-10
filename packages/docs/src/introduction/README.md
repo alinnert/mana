@@ -2,7 +2,7 @@
 title: What is Mana?
 ---
 
-# About Mana
+# What is Mana?
 
 ## The goal
 
@@ -13,7 +13,7 @@ Making simple, interactive websites easier to develop is the goal of Mana. This 
 1. Developers get a web app-framework-like experience, so there's less to care about while developing.
 1. Front end people don't need to touch JavaScript at all. Everything is controlled via classes and attributes.
 
-## The problem with most other frameworks
+## What about all the popular frameworks?
 
 All well-known frameworks like React and Vue create and manage their own HTML. To some extend this also includes WebComponents. Websites are generally server rendered or pre rendered. This creates a conflict about who is the "ruler" of the markup. Mana, on the other hand, only updates existing HTML.
 
