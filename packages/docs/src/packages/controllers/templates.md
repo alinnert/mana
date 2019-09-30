@@ -29,12 +29,12 @@ Example:
 
 ## Attributes
 
-You can pass values to your controller using data-attributes. The syntax is similar to target classes.
+You can pass values to your controller using any attribute. Data Attributes are preferred.
 
 Example:
 
 ~~~ html {1}
-<div class="counter @counter" data-counter.initial-value="5">
+<div class="counter @counter" data-counter-value="5">
   <div class="counter__value @counter.value"></div>
   <button class="counter__button @counter.button"></div>
 </div>

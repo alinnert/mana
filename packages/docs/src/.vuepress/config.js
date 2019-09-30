@@ -12,7 +12,7 @@ module.exports = {
     nav: [
       { text: 'Introduction', link: '/introduction/' },
       { text: 'Packages', items: [
-        { text: 'Overview', link: '/packages/' },
+        { text: 'Overview', link: '/packages/overview' },
         { text: 'Available Packages', items: [
           { text: 'Core', link: '/packages/core/' },
           { text: 'Controllers', link: '/packages/controllers/' },
@@ -49,7 +49,6 @@ module.exports = {
             '/packages/controllers/',
             '/packages/controllers/controllers',
             '/packages/controllers/templates',
-            '/packages/controllers/instance-scope',
           ]
         },
       ],
