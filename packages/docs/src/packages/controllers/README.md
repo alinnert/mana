@@ -38,7 +38,7 @@ defineController({
       // Here the HTML attribute will default to `data-counter-value="0"`
       // if no value is defined.
       // And the default controller value will be `0` accordingly.
-      defaultValue: '0',
+      default: '0',
     }
   },
 
@@ -56,12 +56,12 @@ defineController({
     // Add a click event listener to all `incrementButton` targets.
     // This attaches the listener to all occurrences of the target,
     // no matter if it was present from the start or has been added later on.
-    targets.incrementButton.on({
-      click () { attributes.currentValue.value += 1 }
+    targets.incrementButton.on('click', () => {
+      attributes.currentValue.value += 1
     })
 
-    targets.decrementButton.on({
-      click () { attributes.currentValue.value -= 1 }
+    targets.decrementButton.on('click', () => {
+      attributes.currentValue.value -= 1
     })
 
     // Listen for all changes to the attribute `currentValue`.
