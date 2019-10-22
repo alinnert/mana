@@ -1,0 +1,48 @@
+{
+  "name": "@mana/attributes",
+  "version": "1.0.0",
+  "description": "Property descriptors for Mana",
+  "author": "Andreas Linnert <andreas@linnertmedia.de>",
+  "homepage": "https://alinnert.github.io/mana",
+  "license": "MIT",
+  "main": "src/index.js",
+  "private": true,
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alinnert/mana.git"
+  },
+  "scripts": {
+    "build": "pack build"
+  },
+  "bugs": {
+    "url": "https://github.com/alinnert/mana/issues"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-web"
+      ],
+      [
+        "@pika/plugin-bundle-web"
+      ],
+      [
+        "@pika/plugin-build-umd",
+        {
+          "name": "mana"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "typescript": "^3.5.3"
+  }
+}

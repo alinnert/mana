@@ -1,0 +1,28 @@
+{
+  "name": "@mana/testing",
+  "version": "1.0.0",
+  "description": "This package implements testing for mana",
+  "author": "Andreas Linnert <andreas@linnertmedia.de>",
+  "homepage": "https://github.com/alinnert/mana#readme",
+  "license": "MIT",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alinnert/mana.git"
+  },
+  "scripts": {
+    "test": "ts-node src/index.ts"
+  },
+  "bugs": {
+    "url": "https://github.com/alinnert/mana/issues"
+  },
+  "dependencies": {
+    "@mana/attributes": "^1.0.0",
+    "@mana/core": "^1.0.0",
+    "@mana/utils": "^1.0.0",
+    "ts-node": "^8.3.0"
+  }
+}

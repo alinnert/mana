@@ -1,0 +1,54 @@
+{
+  "name": "@mana/core",
+  "version": "1.0.0",
+  "description": "The mana core",
+  "private": true,
+  "keywords": [
+    "dom",
+    "library",
+    "mutationObserver"
+  ],
+  "author": "Andreas Linnert <andreas@linnertmedia.de>",
+  "homepage": "https://alinnert.github.io/mana",
+  "license": "MIT",
+  "main": "src/index.js",
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alinnert/mana.git"
+  },
+  "scripts": {
+    "build": "pack build",
+    "lint": "eslint src/**/*.ts"
+  },
+  "bugs": {
+    "url": "https://github.com/alinnert/mana/issues"
+  },
+  "@pika/pack": {
+    "pipeline": [
+      [
+        "@pika/plugin-ts-standard-pkg"
+      ],
+      [
+        "@pika/plugin-build-web"
+      ],
+      [
+        "@pika/plugin-bundle-web"
+      ],
+      [
+        "@pika/plugin-build-umd",
+        {
+          "name": "mana"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "typescript": "^3.5.3"
+  }
+}

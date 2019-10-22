@@ -1,0 +1,27 @@
+{
+  "name": "@mana/utils",
+  "version": "1.0.0",
+  "description": "A set of utilities to help you create code for your website frontend",
+  "scripts": {
+    "test": "ts-node src/index.test.ts"
+  },
+  "keywords": [
+    "ui",
+    "library",
+    "utilities"
+  ],
+  "directories": {
+    "src": "src"
+  },
+  "files": [
+    "src"
+  ],
+  "author": "Andreas Linnert <andreas@linnertmedia.de>",
+  "homepage": "https://alinnert.github.io/mana",
+  "main": "src/index.js",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.2.1",
+    "ts-node": "^8.3.0"
+  }
+}

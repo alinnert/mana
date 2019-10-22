@@ -10,44 +10,66 @@ module.exports = {
     repo: 'alinnert/mana',
 
     nav: [
-      { text: 'About', link: '/about/' },
-      { text: 'Documentation', link: '/docs/' },
+      { text: 'Introduction', link: '/introduction/' },
+      { text: 'Packages', items: [
+        { text: 'Overview', link: '/packages/overview' },
+        { text: 'Available Packages', items: [
+          { text: 'Core', link: '/packages/core/' },
+          { text: 'Controllers', link: '/packages/controllers/' },
+          { text: 'Attributes', link: '/packages/attributes/' },
+          { text: 'Utils', link: '/packages/utils/' },
+        ] },
+      ] },
     ],
 
     sidebar: {
-      '/docs/': [
+      '/introduction': [
         {
           title: 'Introduction',
           collapsable: false,
           children: [
-            '/docs/'
+            '/introduction/',
           ]
-        },
+        }
+      ],
+      '/packages/core': [
         {
           title: 'Package "core"',
           collapsable: false,
           children: [
-            '/docs/core/',
+            '/packages/core/',
           ]
         },
-        {
-          title: 'Package "attributes"',
-          collapsable: false,
-          children: [
-            '/docs/attributes/',
-            '/docs/attributes/create-own',
-          ]
-        },
+      ],
+      '/packages/controllers': [
         {
           title: 'Package "controllers"',
           collapsable: false,
           children: [
-            '/docs/controllers/',
-            '/docs/controllers/controllers',
-            '/docs/controllers/templates',
-            '/docs/controllers/instance-scope',
+            '/packages/controllers/',
+            '/packages/controllers/controllers',
+            '/packages/controllers/templates',
           ]
-        }
+        },
+      ],
+      '/packages/attributes': [
+        {
+          title: 'Package "attributes"',
+          collapsable: false,
+          children: [
+            '/packages/attributes/',
+            '/packages/attributes/create-own',
+          ]
+        },
+      ],
+      '/packages/utils': [
+        {
+          title: 'Package "utils"',
+          collapsable: false,
+          children: [
+            '/packages/utils/',
+          ]
+        },
       ]
     }
   }
