@@ -67,8 +67,17 @@ defineController({
     // Listen for all changes to the attribute `currentValue`.
     // This is where the HTML is being updated.
     attributes.currentValue.onChange(value => {
-      targets.output.textValue = value
+      targets.output.text = value
     })
+  }
+
+  // Just an idea, but maybe a render function is a better idea
+  // than just attribute change handlers. Also the code is shorter.
+  // It fires whenever an attribute changes.
+  // But I need to find a way to call it when a non attribute state changes,
+  // like a hidden, internal state. E.g. Ajax responses.
+  render ({ targets, attributes }) {
+    targets.output.text = attributes.currentValue
   }
 })
 ~~~
