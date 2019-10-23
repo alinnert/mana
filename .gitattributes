@@ -1,2 +1,2 @@
-.eslintrc.js linguist-vendored=true
-packages/docs/src/.vuepress/config.js linguist-vendored=true
+.eslintrc.js linguist-vendored
+packages/docs/src/.vuepress/config.js linguist-vendored
