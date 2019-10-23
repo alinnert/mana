@@ -1,2 +1,3 @@
+.github/* linguist-vendored
 .eslintrc.js linguist-vendored
 packages/docs/src/.vuepress/config.js linguist-vendored
