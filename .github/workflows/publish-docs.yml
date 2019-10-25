@@ -30,7 +30,7 @@ jobs:
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@master
       env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BASE_BRANCH: master
         BRANCH: gh-pages
         FOLDER: packages/docs/src/.vuepress/dist
