@@ -22,8 +22,8 @@ Mana is **not** a UI framework for web apps, like React and Vue, that generates 
   Like this article
 </button>
 
-<script src="/scripts/like-button.js">
-<script src="/scripts/like-counter.js">
+<script src="/scripts/like-button.js"></script>
+<script src="/scripts/like-counter.js"></script>
 ~~~
 
 This is all you have to do. The two js files define two *targets*: `@like-button` and `@like-counter`. If you load the script files it will look for elements with these classes and attaches its logic to these elements. Its up to you where these targets are located and what kind of elements they are.
