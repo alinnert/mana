@@ -15,7 +15,6 @@ module.exports = {
         { text: 'Overview', link: '/packages/overview' },
         { text: 'Available Packages', items: [
           { text: 'Core', link: '/packages/core/' },
-          { text: 'Controllers', link: '/packages/controllers/' },
           { text: 'Attributes', link: '/packages/attributes/' },
           { text: 'Utils', link: '/packages/utils/' },
         ] },
@@ -38,17 +37,6 @@ module.exports = {
           collapsable: false,
           children: [
             '/packages/core/',
-          ]
-        },
-      ],
-      '/packages/controllers': [
-        {
-          title: 'Package "controllers"',
-          collapsable: false,
-          children: [
-            '/packages/controllers/',
-            '/packages/controllers/controllers',
-            '/packages/controllers/templates',
           ]
         },
       ],

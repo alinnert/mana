@@ -1,30 +1,31 @@
 ---
 home: true
 heroImage: /brand.svg
-tagline: A framework for websites ‒ not web apps
+tagline: A small framework for interactive websites
 ---
 
-Mana is a framework that lets you easily add functionality to your existing HTML.
+Mana is a framework that lets you easily add interactivity to your existing HTML. You register targets in JavaScript and apply them to HTML using special classes. Connecting JS and HTML happens automatically. There's no need to manually apply a widget to a selector.
 
 ## Example
 
 ~~~ html
-<div class="@like-widget" data-like-widget-action-url="/api/add-like?article-id=123">
-  <div class="@like-widget.value">42</div>
-  <button class="@like-widget.button">Like this article</button>
-</div>
+<div class="@like-counter">17</div>
+<button class="@like-button" data-like-action-url="/api/like-article?id=123">
+  Like this article
+</button>
 
-<script src="/scripts/like-widget.js"></script>
+<script src="/scripts/like-button.js">
+<script src="/scripts/like-counter.js">
 ~~~
 
-This is all you have to do. There lives a **controller** in the file `like-widget.js` which how the *like widget* should behave. It doesn't assume a specific HTML structure, just the presence of some classes. These classes can be attached to any HTML element. That way this widget just fits any website.
+This is all you have to do. The two js files define two *targets*: `@like-button` and `@like-counter`. If you load the script files it will look for elements with these classes and attaches its logic to these elements. Its up to you where these targets are located and what kind of elements they are.
 
 Basically, it works similar to jQuery plugins but Mana has two major benefits:
 
-1. If you want to use a widget you **don't have to touch JavaScript** at all. This makes it nice for teams with distinct JS developers and front-end designers.
-1. You **don't have to manually re-initialize** a widget if you add some HTML to the DOM later on. Mana detects newly added widgets automatically.
+1. If you want to integrate a widget into your website you **don't have to touch JavaScript** at all. This makes it nice for teams with distinct JS developers and front-end designers.
+1. You **don't have to manually re-initialize** a widget if you add some HTML to the DOM later on. Mana detects new elements automatically.
 
 ## Learn more
 
 - [Learn more about Mana](/introduction/)
-- [Implement your own controller](/docs/)
+- [Implement your own widget](/docs/)
