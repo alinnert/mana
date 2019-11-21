@@ -1,5 +1,5 @@
-import { initCore } from './core/mutation-observer'
+import { initCore } from './core/mutationObserver'
 
-export * from './api/watch-class-name'
+export * from './api/registerTarget'
 
 initCore()
