@@ -24,7 +24,7 @@ export interface WatcherOptions {
   onRemoved?: ElementExistenceChangedCallback
   onAttributeChanged?: AttributeValueChangedCallback
 }
-// #endregion
+// #endregion types
 
 /**
  * Add a new watcher. Watches for specific elements and executes functions

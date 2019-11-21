@@ -15,7 +15,7 @@ export enum ChangeType {
   ADDED = 'onAddedCallback',
   REMOVED = 'onRemovedCallback'
 }
-// #endregion
+// #endregion types
 
 /**
  * The object that stores all registered watches and their options
@@ -75,7 +75,17 @@ export function initCore (): void {
 
   const observer = new MutationObserver(mutationCallback)
 
-  document.addEventListener('DOMContentLoaded', (): void => {
-    observer.observe(document.body, options)
-  })
+  const checkNextReadyState = (): void => {
+    const readyStates: DocumentReadyState[] = ['interactive', 'complete']
+
+    if (readyStates.includes(window.document.readyState)) {
+      observer.observe(window.document.body, options)
+    } else {
+      window.document.addEventListener('readystatechange', () => {
+        checkNextReadyState()
+      })
+    }
+  }
+
+  checkNextReadyState()
 }
