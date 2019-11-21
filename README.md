@@ -36,6 +36,7 @@ Basically, it works similar to jQuery plugins but Mana has two major benefits:
 ## Learn more
 
 - [Learn more about Mana](https://alinnert.github.io/mana/introduction/)
+- [Discover all available packges](https://alinnert.github.io/mana/packages/overview.html)
 
 ## License
 
