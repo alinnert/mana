@@ -1,7 +1,7 @@
 import { addNewTarget } from '../core/targetRegister'
 
 // #region types
-interface TargetInstance<T extends TargetOptions> {
+export interface TargetInstance<T extends TargetOptions> {
   props: {
     // TODO: Test if this does what I hope it does.
     [P in keyof T['props']]: T['props'][P]
@@ -14,8 +14,8 @@ interface TargetInstance<T extends TargetOptions> {
 
 export type SignalCallback = () => void
 
-export type DOMEventCallback<K extends keyof HTMLElementEventMap> = (
-  eventName: K,
+export type DOMEventCallback<EventName extends keyof HTMLElementEventMap> = (
+  event: DocumentEventMap[EventName],
   // TODO: I think this needs a (type) reference to the original TargetOptions instance
   targetInstance: TargetInstance<TargetOptions>
 ) => void
@@ -40,7 +40,7 @@ export interface TargetOptions {
 
   events: {
     // TODO: again, does this work?
-    [K in keyof HTMLElementEventMap]: DOMEventCallback<keyof HTMLElementEventMap>
+    [EventName in keyof HTMLElementEventMap]: DOMEventCallback<EventName>
   }
 }
 // #endregion types

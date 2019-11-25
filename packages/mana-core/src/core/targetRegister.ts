@@ -1,20 +1,24 @@
 import { TargetNameElementsMap } from './handleNodeChange'
-import { TargetOptions } from '../api/registerTarget'
+import { TargetOptions, TargetInstance } from '../api/registerTarget'
 
+// #region types
 export interface TargetDescriptor {
   options: TargetOptions|null
   elements: WeakSet<HTMLElement>
 }
 
-export interface TargetRegister {
+export interface TargetElementMap {
   [targetName: string]: TargetDescriptor
 }
+// #endregion types
 
-export const targetRegister: TargetRegister = {}
+const targetElementMap: TargetElementMap = {}
+const elementTargetInstanceMap =
+  new WeakMap<HTMLElement, TargetInstance<TargetOptions>>()
 
 function ensureTargetNameInRegister (targetName: string): void {
-  if (!(targetName in targetRegister)) {
-    targetRegister[targetName] = { elements: new WeakSet(), options: null }
+  if (!(targetName in targetElementMap)) {
+    targetElementMap[targetName] = { elements: new WeakSet(), options: null }
   }
 }
 
@@ -25,7 +29,7 @@ export function addNewElements (
   ensureTargetNameInRegister(targetName)
 
   for (const element of elements) {
-    targetRegister[targetName].elements.add(element)
+    targetElementMap[targetName].elements.add(element)
   }
 }
 
@@ -44,5 +48,5 @@ export function addNewTarget (
 ): void {
   ensureTargetNameInRegister(targetName)
 
-  targetRegister[targetName].options = targetOptions
+  targetElementMap[targetName].options = targetOptions
 }
