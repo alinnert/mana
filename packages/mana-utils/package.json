@@ -21,7 +21,7 @@
   "main": "src/index.js",
   "license": "ISC",
   "dependencies": {
-    "core-js": "^3.5.0",
-    "ts-node": "^8.5.4"
+    "core-js": "^3.6.4",
+    "ts-node": "^8.6.2"
   }
 }
