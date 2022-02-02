@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+
+    <style>
+      :root {
+        font-family: sans-serif;
+      }
+      
+      .\@counter {
+        padding: 10px;
+        margin-bottom: 10px;
+        user-select: none;
+      }
+
+      .\@counter:active {
+        outline: 2px solid silver;
+      }
+
+      #counter-list {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mana demos</h1>
+
+    <button class="@add-counter">Add counter</button>
+
+    <div id="counter-list">
+      <div class="@counter"></div>
+      <div class="@counter" value="3"></div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/counter.ts"></script>
+    <script type="module" src="/add-counter.ts"></script>
+    <!-- <script type="module" src="/index.ts"></script> -->
+  </body>
+</html>
