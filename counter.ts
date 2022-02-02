@@ -1,17 +1,17 @@
 import { registerTarget } from './src/main'
 
-// const numberProp = {
-//   parse: (value: string) => parseInt(value),
-//   stringify: (value: number) => value.toString(),
-// }
+const numberProp = {
+  parse: (value: string) => parseInt(value),
+  stringify: (value: number) => value.toString(),
+}
 
 registerTarget({
   name: 'counter',
-  // props: {
-  //   value: { attribute: 'data-value', type: numberProp },
-  // },
+  props: {
+    value: { attribute: 'data-value', type: numberProp },
+  },
   events: {
-    click({ element }, event) {
+    click({ element }) {
       element.textContent = (parseInt(element.textContent) + 1).toString()
     },
   },
@@ -25,5 +25,12 @@ registerTarget({
   },
   update({ element }) {
     console.log('update', element)
+    const removeButton = document.createElement('button')
+    removeButton.textContent = 'Remove'
+    removeButton.addEventListener('click', () => {
+      element.remove()
+    })
+
+    element.insertAdjacentElement('beforeend', removeButton)
   },
 })

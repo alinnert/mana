@@ -1,5 +1,10 @@
 import { addTarget, TargetContext } from '../lib/targetStore'
 
+interface AttributeTypeDescriptor<T> {
+  parse: (value: string) => T
+  stringify: (value: T) => string
+}
+
 export type TargetEventHandler<
   E extends HTMLElementEventMap[keyof HTMLElementEventMap],
 > = (context: TargetContext, event: E) => void
@@ -10,15 +15,22 @@ export type TargetEvents = {
   >
 }
 
-export interface TargetOptions {
+interface TargetOptionsTypeParam {
+  props?: {
+    [propName: string]: unknown
+  }
+}
+
+export interface TargetOptions<T extends TargetOptionsTypeParam> {
   name: string
-  // props?: {
-  //   [propName: string]: {
-  //     attribute: string
-  //     default?: string
-  //     type?: AttributeTypeDescriptor
-  //   }
-  // }
+
+  props?: {
+    [propName: string]: {
+      attribute?: string
+      default?: string
+      type?: AttributeTypeDescriptor<T['props'][typeof propName]>
+    }
+  }
 
   // signals?: {
   //   [signalName: string]: SignalCallback
@@ -29,6 +41,8 @@ export interface TargetOptions {
   update?: (instance: TargetContext) => void
 }
 
-export function registerTarget(targetOptions: TargetOptions): void {
+export function registerTarget<T extends TargetOptionsTypeParam = {}>(
+  targetOptions: TargetOptions<T>,
+): void {
   addTarget(targetOptions)
 }

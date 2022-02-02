@@ -1,4 +1,4 @@
-import { initCore } from './lib/mutationObserver'
+import { initCore } from "./lib/initCore"
 
 export * from './api/registerTarget'
 

@@ -48,10 +48,31 @@ export function addElements(targetName: string, elements: HTMLElement[]): void {
 export function removeElements(
   targetName: string,
   elements: HTMLElement[],
-): void {}
+): void {
+  if (targets[targetName] === undefined) return
 
-function mountElement(name: string, element: HTMLElement): void {
-  const target = targets[name]
+  for (const element of elements) {
+    setTimeout(() => {
+      unmountElement(targetName, element)
+      targets[targetName].contexts.delete(element)
+    }, 0)
+  }
+}
+
+export function updateElement(
+  targetNames: string[],
+  element: HTMLElement,
+): void {
+  for (const targetName of targetNames) {
+    const context = targets[targetName].contexts.get(element)
+    if (context === undefined) return
+
+    targets[targetName].options?.update?.(context)
+  }
+}
+
+function mountElement(targetName: string, element: HTMLElement): void {
+  const target = targets[targetName]
   const context = target.contexts.get(element)
   if (context === undefined) return
 
@@ -71,4 +92,12 @@ function mountElement(name: string, element: HTMLElement): void {
       callback?.(context, event)
     })
   }
+}
+
+function unmountElement(targetName: string, element: HTMLElement): void {
+  const target = targets[targetName]
+  const context = target.contexts.get(element)
+  if (context === undefined) return
+
+  target.options?.unmount?.(context)
 }
