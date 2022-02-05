@@ -26,7 +26,7 @@ export interface TargetContext<P extends Record<string, unknown>> {
 /**
  * A list of all registered Targets.
  */
- interface Targets<T extends Record<string, unknown>> {
+interface Targets<T extends Record<string, unknown>> {
   [targetName: string]: TargetDescriptor<T>
 }
 
@@ -38,7 +38,7 @@ const targets: Targets<Record<string, unknown>> = {}
 /**
  * Makes sure a target name is present in the target storage and initializes it
  * with default data.
- * @param targetName 
+ * @param targetName The target name to add to the storage.
  */
 function addTargetName(targetName: string): void {
   targets[targetName] ??= { options: null, contexts: new Map() }
@@ -124,9 +124,9 @@ export function addElements<
 
 /**
  * Removes an element for a given target name from the target storage.
- * @param targetName 
- * @param elements 
- * @returns 
+ * @param targetName The target name from which the element should be removed
+ * from.
+ * @param elements The element to remove from the storage.
  */
 export function removeElements(
   targetName: string,
@@ -196,8 +196,8 @@ function mountElement<P extends Record<string, unknown>>(
 /**
  * Does all the work that needs to be done when unmounting an element for a
  * given target name.
- * @param targetName 
- * @param element 
+ * @param targetName The target name for which the element should be unmounted.
+ * @param element The element that should be unmounted.
  */
 function unmountElement(targetName: string, element: HTMLElement): void {
   const target = targets[targetName]
