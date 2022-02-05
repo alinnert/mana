@@ -3,7 +3,6 @@ import { mutationCallback } from './mutationCallback'
 
 /**
  * Initializes the `MutationObserver`.
- * Starts as soon as the first selector gets registered.
  */
 export function initCore(): void {
   const observer = new MutationObserver(mutationCallback)

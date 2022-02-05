@@ -6,6 +6,12 @@ interface GetTargetElementsResult {
 
 export const targetClassNamePrefix = '@'
 
+/**
+ * Searches an element and its descendants for target classes.
+ * @param element The element to search in.
+ * @returns An object that maps all found target classes to a list of
+ * HTMLElements a target class was found on.
+ */
 export function getTargetElements(
   element: HTMLElement,
 ): GetTargetElementsResult {

@@ -1,14 +1,20 @@
-import { registerTarget } from './src/main'
+import { TargetPropConverter, registerTarget } from './src/main'
 
-const numberProp = {
-  parse: (value: string) => parseInt(value),
-  stringify: (value: number) => value.toString(),
+const numberProp: TargetPropConverter<number> = {
+  parse: (value) => parseInt(value),
+  stringify: (value) => value.toString(),
+}
+
+const stringProp: TargetPropConverter<string> = {
+  parse: (value) => value,
+  stringify: (value) => value,
 }
 
 registerTarget({
   name: 'counter',
   props: {
     value: { attribute: 'data-value', type: numberProp },
+    label: { type: stringProp },
   },
   events: {
     click({ element }) {
@@ -17,14 +23,20 @@ registerTarget({
   },
   mount({ element }) {
     console.log('mount', element)
+
     element.style.background = '#ddd'
     element.textContent = '0'
   },
   unmount({ element }) {
     console.log('unmount', element)
   },
-  update({ element }) {
+  update({ element, props }) {
     console.log('update', element)
+
+    // `props` demo
+    console.log(props.value)
+    console.log(props.label)
+
     const removeButton = document.createElement('button')
     removeButton.textContent = 'Remove'
     removeButton.addEventListener('click', () => {
