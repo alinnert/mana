@@ -1,10 +1,10 @@
-const path = require('node:path')
-const { defineConfig } = require('vite')
+import { resolve } from 'node:path'
+import { defineConfig } from 'vite'
 
-module.exports = defineConfig({
+export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, 'src/main.ts'),
+      entry: resolve(__dirname, 'src/main.ts'),
       name: 'Mana',
       fileName: (format) => `mana.${format}.js`,
     },

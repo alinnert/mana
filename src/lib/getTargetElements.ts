@@ -1,6 +1,6 @@
 import { getTargetNamesFromClassList } from './getTargetNamesFromClassList'
 
-interface GetTargetElementsResult {
+type GetTargetElementsResult = {
   [targetName: string]: HTMLElement[]
 }
 

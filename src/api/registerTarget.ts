@@ -41,7 +41,7 @@ export type TargetEvents<P extends Record<string, unknown>> = {
 /**
  * The target configuration object.
  */
-export interface TargetOptions<P extends Record<string, unknown>> {
+export type TargetOptions<P extends Record<string, unknown>> = {
   name: string
   props?: TargetProps<P>
   events?: TargetEvents<P>

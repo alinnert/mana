@@ -8,7 +8,7 @@ import {
  * Describes a registered target, its configuration object and all occurrences
  * in the DOM.
  */
-interface TargetDescriptor<P extends TargetProps> {
+type TargetDescriptor<P extends TargetProps> = {
   options: TargetOptions<P> | null
   contexts: Map<HTMLElement, TargetContext<P>>
 }
@@ -17,7 +17,7 @@ interface TargetDescriptor<P extends TargetProps> {
  * Describes a context for one target instance. It gets passed to the callback
  * methods provided in a targets configuration object.
  */
-export interface TargetContext<P extends Record<string, unknown>> {
+export type TargetContext<P extends Record<string, unknown>> = {
   element: HTMLElement
   props: P
   // TODO: add signals
@@ -26,7 +26,7 @@ export interface TargetContext<P extends Record<string, unknown>> {
 /**
  * A list of all registered Targets.
  */
-interface Targets<T extends Record<string, unknown>> {
+type Targets<T extends Record<string, unknown>> = {
   [targetName: string]: TargetDescriptor<T>
 }
 
